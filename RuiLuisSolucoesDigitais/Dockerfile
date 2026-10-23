@@ -10,8 +10,12 @@ COPY . .
 # Dá permissão de execução ao Maven Wrapper e compila o projeto
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
-# Expõe a porta 8080 (o Render vai intercetar isto)
+# Copia o JAR gerado para um nome fixo (app.jar)
+# O log mostrou que o ficheiro é RuiLuisSolucoesDigitais-0.0.1-SNAPSHOT.jar
+RUN cp target/RuiLuisSolucoesDigitais-0.0.1-SNAPSHOT.jar app.jar
+
+# Expõe a porta 8080
 EXPOSE 8080
 
-# Comando para iniciar a aplicação
-ENTRYPOINT ["java", "-jar", "target/*.jar"]
+# Comando para iniciar a aplicação usando o nome fixo
+ENTRYPOINT ["java", "-jar", "app.jar"]
