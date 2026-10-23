@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="theme-color" content="#07152f">
+
+	<title>
+		Login | Rui Luís — Soluções Digitais
+	</title>
+
+	<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body class="login-page">
+
+
+	<!-- =====================================================
+         FUNDO ANIMADO
+         ===================================================== -->
+
+	<div class="login-background">
+
+		<div class="login-grid"></div>
+
+		<div class="login-orb login-orb-blue"></div>
+
+		<div class="login-orb login-orb-purple"></div>
+
+		<div class="login-orb login-orb-red"></div>
+
+		<div class="login-orb login-orb-green"></div>
+
+		<div class="login-line login-line-one"></div>
+
+		<div class="login-line login-line-two"></div>
+
+	</div>
+
+
+	<!-- =====================================================
+         CONTEÚDO
+         ===================================================== -->
+
+	<main class="login-container">
+
+
+		<!-- =================================================
+             CARTÃO
+             ================================================= -->
+
+		<section class="login-card">
+
+
+			<!-- =============================================
+                 BRILHO DO CARTÃO
+                 ============================================= -->
+
+			<div class="login-card-glow"></div>
+
+
+			<!-- =============================================
+                 LOGO
+                 ============================================= -->
+
+			<div class="login-brand">
+
+				<div class="login-logo">
+
+					<span>RL</span>
+
+				</div>
+
+
+				<div class="login-brand-text">
+
+					<strong>
+						Rui Luís
+					</strong>
+
+					<span>
+						Soluções Digitais
+					</span>
+
+				</div>
+
+			</div>
+
+
+			<!-- =============================================
+                 CABEÇALHO
+                 ============================================= -->
+
+			<div class="login-header">
+
+				<span class="login-label">
+					ÁREA ADMINISTRATIVA
+				</span>
+
+				<h1>
+					Bem-vindo
+					<span>de volta.</span>
+				</h1>
+
+				<p>
+					Inicia sessão para gerir os teus
+					projectos e pedidos de serviço.
+				</p>
+
+			</div>
+
+
+			<!-- =============================================
+                 FORMULÁRIO
+                 ============================================= -->
+
+			<form method="post" action="/login" class="login-form" id="loginForm">
+
+
+				<!-- =========================================
+                     CSRF
+                     ========================================= -->
+
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+
+				<!-- =========================================
+                     UTILIZADOR
+                     ========================================= -->
+
+				<div class="login-form-group">
+
+					<label for="username">
+						Utilizador
+					</label>
+
+					<div class="login-input-wrapper">
+
+						<span class="login-input-icon">
+
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+								<circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8" />
+
+								<path d="M4 20C4.8 16.8 7.5 15 12 15C16.5 15 19.2 16.8 20 20" stroke="currentColor"
+									stroke-width="1.8" stroke-linecap="round" />
+
+							</svg>
+
+						</span>
+
+
+						<input type="text" id="username" name="username" autocomplete="username"
+							placeholder="Introduz o teu utilizador" required>
+
+					</div>
+
+				</div>
+
+
+				<!-- =========================================
+                     PALAVRA-PASSE
+                     ========================================= -->
+
+				<div class="login-form-group">
+
+					<label for="password">
+						Palavra-passe
+					</label>
+
+					<div class="login-input-wrapper">
+
+						<span class="login-input-icon">
+
+							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+								<rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor"
+									stroke-width="1.8" />
+
+								<path d="M8 10V7C8 4.8 9.8 3 12 3C14.2 3 16 4.8 16 7V10" stroke="currentColor"
+									stroke-width="1.8" stroke-linecap="round" />
+
+								<circle cx="12" cy="15" r="1" fill="currentColor" />
+
+							</svg>
+
+						</span>
+
+
+						<input type="password" id="password" name="password" autocomplete="current-password"
+							placeholder="Introduz a tua palavra-passe" required>
+
+
+						<!-- =================================
+                             BOTÃO VISIBILIDADE
+                             ================================= -->
+
+						<button type="button" class="password-toggle" id="passwordToggle"
+							aria-label="Mostrar palavra-passe" title="Mostrar palavra-passe">
+
+							<!-- OLHO FECHADO -->
+
+							<svg class="eye-icon eye-open" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+
+								<path
+									d="M2.5 12C4.2 8.2 7.6 6 12 6C16.4 6 19.8 8.2 21.5 12C19.8 15.8 16.4 18 12 18C7.6 18 4.2 15.8 2.5 12Z"
+									stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+
+								<circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+
+							</svg>
+
+
+							<!-- OLHO FECHADO -->
+
+							<svg class="eye-icon eye-closed" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+
+								<path d="M3 3L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+								<path
+									d="M10.6 6.2C11.05 6.07 11.52 6 12 6C16.4 6 19.8 8.2 21.5 12C20.8 13.55 19.75 14.8 18.4 15.75"
+									stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+								<path
+									d="M6.1 6.95C4.5 8.05 3.25 9.7 2.5 12C4.2 15.8 7.6 18 12 18C13.3 18 14.5 17.8 15.6 17.4"
+									stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+							</svg>
+
+						</button>
+
+					</div>
+
+				</div>
+
+
+				<!-- =========================================
+                     MENSAGEM DE ERRO
+                     ========================================= -->
+
+				<div th:if="${param.error}" class="login-message login-error">
+
+					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+						<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+
+						<path d="M12 7V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+						<circle cx="12" cy="16.5" r="1" fill="currentColor" />
+
+					</svg>
+
+					<span>
+						Utilizador ou palavra-passe incorrectos.
+					</span>
+
+				</div>
+
+
+				<!-- =========================================
+                     MENSAGEM LOGOUT
+                     ========================================= -->
+
+				<div th:if="${param.logout}" class="login-message login-success">
+
+					<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+						<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+
+						<path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+							stroke-linejoin="round" />
+
+					</svg>
+
+					<span>
+						Sessão terminada com sucesso.
+					</span>
+
+				</div>
+
+
+				<!-- =========================================
+                     BOTÃO LOGIN
+                     ========================================= -->
+
+				<button type="submit" class="login-button" id="loginButton">
+
+					<span class="login-button-text">
+						Entrar no painel
+					</span>
+
+					<span class="login-button-arrow">
+
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+							<path d="M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+							<path d="M13 6L19 12L13 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+								stroke-linejoin="round" />
+
+						</svg>
+
+					</span>
+
+				</button>
+
+			</form>
+
+
+			<!-- =============================================
+                 RODAPÉ
+                 ============================================= -->
+
+			<div class="login-footer">
+
+				<span class="login-status-dot"></span>
+
+				<span>
+					Sistema protegido
+				</span>
+
+				<span class="login-footer-separator">
+					•
+				</span>
+
+				<span>
+					Acesso restrito
+				</span>
+
+			</div>
+
+
+		</section>
+
+
+		<!-- =================================================
+             TEXTO INFERIOR
+             ================================================= -->
+
+		<div class="login-bottom">
+
+			<span>
+				Rui Luís — Soluções Digitais
+			</span>
+
+			<span>
+				© <span id="loginYear"></span>
+			</span>
+
+		</div>
+
+
+	</main>
+
+
+	<!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+	<script>
+
+		/* =================================================
+		   VISIBILIDADE DA PALAVRA-PASSE
+		   ================================================= */
+
+		const password =
+			document.getElementById("password");
+
+		const passwordToggle =
+			document.getElementById("passwordToggle");
+
+
+		if (
+			password &&
+			passwordToggle
+		) {
+
+			passwordToggle.addEventListener(
+				"click",
+				function () {
+
+					const mostrar =
+						password.type === "password";
+
+
+					password.type =
+						mostrar
+							? "text"
+							: "password";
+
+
+					passwordToggle.classList.toggle(
+						"showing",
+						mostrar
+					);
+
+
+					passwordToggle.setAttribute(
+						"aria-label",
+						mostrar
+							? "Ocultar palavra-passe"
+							: "Mostrar palavra-passe"
+					);
+
+
+					passwordToggle.setAttribute(
+						"title",
+						mostrar
+							? "Ocultar palavra-passe"
+							: "Mostrar palavra-passe"
+					);
+
+				}
+			);
+
+		}
+
+
+		/* =================================================
+		   ANIMAÇÃO DO LOGIN
+		   ================================================= */
+
+		const loginForm =
+			document.getElementById("loginForm");
+
+		const loginButton =
+			document.getElementById("loginButton");
+
+
+		if (
+			loginForm &&
+			loginButton
+		) {
+
+			loginForm.addEventListener(
+				"submit",
+				function () {
+
+					loginButton.classList.add(
+						"loading"
+					);
+
+					loginButton.disabled = true;
+
+					const texto =
+						loginButton.querySelector(
+							".login-button-text"
+						);
+
+					if (texto) {
+
+						texto.textContent =
+							"A autenticar...";
+
+					}
+
+				}
+			);
+
+		}
+
+
+		/* =================================================
+		   ANO
+		   ================================================= */
+
+		const loginYear =
+			document.getElementById("loginYear");
+
+
+		if (loginYear) {
+
+			loginYear.textContent =
+				new Date().getFullYear();
+
+		}
+
+
+		/* =================================================
+		   MOVIMENTO SUAVE DO FUNDO
+		   ================================================= */
+
+		const loginPage =
+			document.querySelector(".login-page");
+
+		const loginOrbs =
+			document.querySelectorAll(".login-orb");
+
+
+		if (loginPage && loginOrbs) {
+
+			loginPage.addEventListener(
+				"mousemove",
+				function (event) {
+
+					const x =
+						(
+							event.clientX /
+							window.innerWidth -
+							0.5
+						) * 20;
+
+
+					const y =
+						(
+							event.clientY /
+							window.innerHeight -
+							0.5
+						) * 20;
+
+
+					loginOrbs.forEach(
+						function (orb, index) {
+
+							const factor =
+								(index + 1) * 0.25;
+
+							orb.style.transform =
+								`translate(
+                                    ${x * factor}px,
+                                    ${y * factor}px
+                                )`;
+
+						}
+					);
+
+				}
+			);
+
+		}
+
+	</script>
+
+</body>
+
+</html>

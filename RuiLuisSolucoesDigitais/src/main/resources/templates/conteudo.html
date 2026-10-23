@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07152f">
+    <title>Conteúdo | MozVexa Admin</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+
+
+<body class="admin-page">
+
+    <div class="ambient-background">
+        <div class="ambient-grid"></div>
+        <div class="ambient-orb orb-blue"></div>
+        <div class="ambient-orb orb-purple"></div>
+        <div class="ambient-orb orb-red"></div>
+        <div class="ambient-orb orb-green"></div>
+        <div class="ambient-orb orb-cyan"></div>
+        <div class="ambient-glow"></div>
+    </div>
+
+    <div class="particles" id="particles"></div>
+
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar" id="adminSidebar">
+
+            <div class="admin-brand">
+                <div class="brand-logo">
+                    <span>MZV</span>
+                    <i></i>
+                </div>
+                <div class="brand-text">
+                    <strong>MozVexa</strong>
+                    <span>Soluções Digitais</span>
+                </div>
+            </div>
+
+            <div class="sidebar-line"></div>
+
+            <nav class="admin-nav">
+
+                <span class="nav-title">PRINCIPAL</span>
+
+                <a th:href="@{/admin}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+
+                <a th:href="@{/admin#pedidos}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h8" />
+                            <path d="M8 16h5" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Pedidos</span>
+                    <span class="nav-badge" th:text="${totalPedidos}">0</span>
+                </a>
+
+                <a th:href="@{/admin#orcamentos}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h5" />
+                            <path d="M8 16h8" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Orçamentos</span>
+                </a>
+
+                <span class="nav-title nav-title-space">GESTÃO</span>
+
+                <a th:href="@{/admin#projectos}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 7h6l2 2h8v10H4z" />
+                            <path d="M4 7V5h6l2 2" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Projectos</span>
+                </a>
+
+                <a th:href="@{/admin#clientes}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="9" cy="8" r="3" />
+                            <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                            <path d="M16 11c2.8.3 5 2.7 5 5.5" />
+                            <path d="M15 5.2a3 3 0 0 1 0 5.6" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Clientes</span>
+                </a>
+
+                <a th:href="@{/admin#relatorios}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 19V5" />
+                            <path d="M4 19h16" />
+                            <path d="M7 15l3-4 3 2 5-7" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Relatórios</span>
+                </a>
+
+                <a th:href="@{/admin/conteudo}" class="nav-item active">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h8" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Conteúdo</span>
+                </a>
+
+                <a th:href="@{/admin/definicoes}" class="nav-item">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.1h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.6-1H6v-2.6h.4A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.4a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.6 1z" />
+                        </svg>
+                    </span>
+                    <span class="nav-text">Definições</span>
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-profile">
+                    <div class="profile-avatar">RL</div>
+                    <div class="profile-info">
+                        <strong>Rui Luís</strong>
+                        <span>Administrador</span>
+                    </div>
+                    <span class="profile-online"></span>
+                </div>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout-button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M10 17l5-5-5-5" />
+                            <path d="M15 12H3" />
+                            <path d="M21 3v18" />
+                        </svg>
+                        <span>Terminar sessão</span>
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button type="button" class="mobile-menu" id="mobileMenu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 6h16" />
+                            <path d="M4 12h16" />
+                            <path d="M4 18h16" />
+                        </svg>
+                    </button>
+
+                    <div>
+                        <span class="topbar-label">PAINEL DE CONTROLO</span>
+                        <h1>Conteúdo do Site</h1>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="system-status">
+                        <span class="status-dot"></span>
+                        Sistema online
+                    </div>
+
+                    <div class="topbar-profile">
+                        <div class="topbar-avatar">RL</div>
+                        <div>
+                            <strong>Rui Luís</strong>
+                            <span>Administrador</span>
+                        </div>
+                        <svg class="profile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+
+            <div class="dashboard-content">
+
+                <div th:if="${sucesso}" class="flash-message flash-success">
+                    ✓ <span th:text="${sucesso}"></span>
+                </div>
+
+                <div th:if="${erro}" class="flash-message flash-error">
+                    ⚠ <span th:text="${erro}"></span>
+                </div>
+
+
+                <section class="dashboard-hero settings-hero">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="badge-pulse"></span>
+                            GESTÃO DE CONTEÚDO
+                        </div>
+                        <h2>Conteúdo do <span>Website</span></h2>
+                        <p>Edite apenas o que precisas. Cada secção tem o seu próprio botão de guardar. Clica em <strong>👁 Ver no site</strong> para veres o bloco real no site público.</p>
+                    </div>
+                </section>
+
+
+                <!-- TOOLBAR -->
+                <div class="content-toolbar">
+
+                    <button type="button" class="content-menu-toggle" id="contentMenuToggle" title="Índice">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 6h16" />
+                            <path d="M4 12h16" />
+                            <path d="M4 18h16" />
+                        </svg>
+                        <span>Secções</span>
+                    </button>
+
+                    <div class="content-toolbar-right">
+
+                        <button type="button" class="content-preview-toggle" id="contentPreviewToggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                <circle cx="12" cy="12" r="2.5" />
+                            </svg>
+                            <span>Pré-visualizar site</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORMULÁRIO -->
+                <div id="conteudoForm">
+
+
+                    <!-- ============ HERO ============ -->
+                    <form th:action="@{/admin/conteudo/hero}" method="post"
+                          class="glass-panel settings-panel" id="sec-hero"
+                          data-anchor="inicio">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">HERO</span>
+                                <h3>Secção principal (topo)</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="inicio">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="heroBadge">Badge (pequeno texto)</label>
+                                    <input type="text" id="heroBadge" name="heroBadge"
+                                           th:value="${config.heroBadge}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="heroTitulo">Título principal</label>
+                                    <input type="text" id="heroTitulo" name="heroTitulo"
+                                           th:value="${config.heroTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="heroDescricao">Descrição</label>
+                                    <textarea id="heroDescricao" name="heroDescricao" rows="4"
+                                              th:text="${config.heroDescricao}" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ SERVIÇOS ============ -->
+                    <form th:action="@{/admin/conteudo/servicos}" method="post"
+                          class="glass-panel settings-panel" id="sec-servicos"
+                          data-anchor="servicos">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">SERVIÇOS</span>
+                                <h3>Cabeçalho da secção</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="servicos">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="servicosTitulo">Título</label>
+                                    <input type="text" id="servicosTitulo" name="servicosTitulo"
+                                           th:value="${config.servicosTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="servicosDescricao">Descrição</label>
+                                    <textarea id="servicosDescricao" name="servicosDescricao" rows="3"
+                                              th:text="${config.servicosDescricao}" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ PROJECTOS ============ -->
+                    <form th:action="@{/admin/conteudo/projectos}" method="post"
+                          class="glass-panel settings-panel" id="sec-projectos"
+                          data-anchor="projectos">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">PROJECTOS</span>
+                                <h3>Cabeçalho da secção</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="projectos">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="projectosTitulo">Título</label>
+                                    <input type="text" id="projectosTitulo" name="projectosTitulo"
+                                           th:value="${config.projectosTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="projectosDescricao">Descrição</label>
+                                    <textarea id="projectosDescricao" name="projectosDescricao" rows="3"
+                                              th:text="${config.projectosDescricao}" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ SOBRE ============ -->
+                    <form th:action="@{/admin/conteudo/sobre}" method="post"
+                          class="glass-panel settings-panel" id="sec-sobre"
+                          data-anchor="sobre">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">SOBRE</span>
+                                <h3>Secção sobre a empresa</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="sobre">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="sobreTitulo">Título</label>
+                                    <input type="text" id="sobreTitulo" name="sobreTitulo"
+                                           th:value="${config.sobreTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="sobreIntro">Parágrafo de introdução (destacado)</label>
+                                    <textarea id="sobreIntro" name="sobreIntro" rows="4"
+                                              th:text="${config.sobreIntro}" required></textarea>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="sobreTexto1">Parágrafo 1</label>
+                                    <textarea id="sobreTexto1" name="sobreTexto1" rows="3"
+                                              th:text="${config.sobreTexto1}" required></textarea>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="sobreTexto2">Parágrafo 2</label>
+                                    <textarea id="sobreTexto2" name="sobreTexto2" rows="3"
+                                              th:text="${config.sobreTexto2}" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ PROCESSO ============ -->
+                    <form th:action="@{/admin/conteudo/processo}" method="post"
+                          class="glass-panel settings-panel" id="sec-processo"
+                          data-anchor="processo">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">PROCESSO</span>
+                                <h3>Cabeçalho + frase final</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="processo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="processoTitulo">Título</label>
+                                    <input type="text" id="processoTitulo" name="processoTitulo"
+                                           th:value="${config.processoTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="processoDescricao">Descrição</label>
+                                    <textarea id="processoDescricao" name="processoDescricao" rows="3"
+                                              th:text="${config.processoDescricao}" required></textarea>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="processoFrase">Frase final da secção</label>
+                                    <input type="text" id="processoFrase" name="processoFrase"
+                                           th:value="${config.processoFrase}" required>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ CTA ============ -->
+                    <form th:action="@{/admin/conteudo/cta}" method="post"
+                          class="glass-panel settings-panel" id="sec-cta"
+                          data-anchor="orcamento">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">CTA</span>
+                                <h3>Caixa "Tem um projecto?"</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="orcamento">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="ctaTitulo">Título</label>
+                                    <input type="text" id="ctaTitulo" name="ctaTitulo"
+                                           th:value="${config.ctaTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="ctaDescricao">Descrição</label>
+                                    <textarea id="ctaDescricao" name="ctaDescricao" rows="3"
+                                              th:text="${config.ctaDescricao}" required></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ CONTACTOS ============ -->
+                    <form th:action="@{/admin/conteudo/contactos}" method="post"
+                          class="glass-panel settings-panel" id="sec-contactos"
+                          data-anchor="contactos">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">CONTACTOS</span>
+                                <h3>Cabeçalho + rodapé da secção</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="contactos">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="contactosTitulo">Título</label>
+                                    <input type="text" id="contactosTitulo" name="contactosTitulo"
+                                           th:value="${config.contactosTitulo}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="contactosDescricao">Descrição</label>
+                                    <textarea id="contactosDescricao" name="contactosDescricao" rows="3"
+                                              th:text="${config.contactosDescricao}" required></textarea>
+                                </div>
+
+                                <div class="settings-group">
+                                    <label for="contactoHorario">Horário de atendimento</label>
+                                    <input type="text" id="contactoHorario" name="contactoHorario"
+                                           th:value="${config.contactoHorario}" required>
+                                </div>
+
+                                <div class="settings-group">
+                                    <label for="contactoResposta">Texto "Resposta personalizada"</label>
+                                    <input type="text" id="contactoResposta" name="contactoResposta"
+                                           th:value="${config.contactoResposta}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="contactoAtendimento">Texto "Atendimento digital"</label>
+                                    <input type="text" id="contactoAtendimento" name="contactoAtendimento"
+                                           th:value="${config.contactoAtendimento}" required>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <!-- ============ FOOTER ============ -->
+                    <form th:action="@{/admin/conteudo/footer}" method="post"
+                          class="glass-panel settings-panel" id="sec-footer"
+                          data-anchor="footer">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-label">FOOTER</span>
+                                <h3>Rodapé do site</h3>
+                            </div>
+
+                            <button type="button" class="section-preview-button"
+                                    data-anchor="footer">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+                                    <circle cx="12" cy="12" r="2.5" />
+                                </svg>
+                                Ver no site
+                            </button>
+                        </div>
+
+                        <div class="settings-form">
+                            <div class="settings-grid">
+
+                                <div class="settings-group settings-full">
+                                    <label for="footerFrase">Frase</label>
+                                    <input type="text" id="footerFrase" name="footerFrase"
+                                           th:value="${config.footerFrase}" required>
+                                </div>
+
+                                <div class="settings-group settings-full">
+                                    <label for="footerCopyright">Copyright</label>
+                                    <input type="text" id="footerCopyright" name="footerCopyright"
+                                           th:value="${config.footerCopyright}" required>
+                                </div>
+
+                            </div>
+
+                            <div class="settings-footer settings-footer-inline">
+                                <button type="submit" class="settings-save-button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg>
+                                    Guardar secção
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <footer class="admin-footer">
+                <span>© <span id="currentYear"></span> MozVexa — Soluções Digitais</span>
+                <span><i></i> Sistema operacional</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================================
+         DRAWER ESQUERDO — ÍNDICE DE SECÇÕES
+         ========================================================= -->
+
+    <div class="content-drawer-overlay" id="contentDrawerOverlay"></div>
+
+    <aside class="content-drawer" id="contentDrawer">
+
+        <div class="content-drawer-header">
+            <div>
+                <span class="content-drawer-label">ÍNDICE</span>
+                <h3>Secções do site</h3>
+            </div>
+
+            <button type="button" class="content-drawer-close" id="contentDrawerClose" title="Fechar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 6l12 12" />
+                    <path d="M18 6L6 18" />
+                </svg>
+            </button>
+        </div>
+
+
+        <nav class="content-drawer-nav">
+
+            <button type="button" class="content-drawer-link" data-target="sec-hero" data-anchor="inicio">
+                <span class="drawer-link-icon">01</span>
+                <span class="drawer-link-text">
+                    <strong>Hero</strong>
+                    <small>Secção principal (topo)</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-servicos" data-anchor="servicos">
+                <span class="drawer-link-icon">02</span>
+                <span class="drawer-link-text">
+                    <strong>Serviços</strong>
+                    <small>Cabeçalho da secção</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-projectos" data-anchor="projectos">
+                <span class="drawer-link-icon">03</span>
+                <span class="drawer-link-text">
+                    <strong>Projectos</strong>
+                    <small>Cabeçalho da secção</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-sobre" data-anchor="sobre">
+                <span class="drawer-link-icon">04</span>
+                <span class="drawer-link-text">
+                    <strong>Sobre</strong>
+                    <small>Secção sobre a empresa</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-processo" data-anchor="processo">
+                <span class="drawer-link-icon">05</span>
+                <span class="drawer-link-text">
+                    <strong>Processo</strong>
+                    <small>Cabeçalho + frase final</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-cta" data-anchor="orcamento">
+                <span class="drawer-link-icon">06</span>
+                <span class="drawer-link-text">
+                    <strong>CTA</strong>
+                    <small>Caixa "Tem um projecto?"</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-contactos" data-anchor="contactos">
+                <span class="drawer-link-icon">07</span>
+                <span class="drawer-link-text">
+                    <strong>Contactos</strong>
+                    <small>Cabeçalho + rodapé</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+            <button type="button" class="content-drawer-link" data-target="sec-footer" data-anchor="footer">
+                <span class="drawer-link-icon">08</span>
+                <span class="drawer-link-text">
+                    <strong>Footer</strong>
+                    <small>Rodapé do site</small>
+                </span>
+                <svg class="drawer-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+
+        </nav>
+
+
+        <div class="content-drawer-footer">
+            <button type="button" class="content-drawer-show-all" id="contentDrawerShowAll">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 6h16" />
+                    <path d="M4 12h16" />
+                    <path d="M4 18h16" />
+                </svg>
+                Ver tudo
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         DRAWER DIREITO — PRÉ-VISUALIZAÇÃO (IFRAME DO SITE REAL)
+         ========================================================= -->
+
+    <div class="preview-overlay" id="previewOverlay"></div>
+
+    <aside class="preview-drawer" id="previewDrawer">
+
+        <div class="preview-header">
+            <div>
+                <span class="preview-label">PRÉ-VISUALIZAÇÃO</span>
+                <h3 id="previewTitle">Site público</h3>
+            </div>
+
+            <div class="preview-actions">
+
+                <button type="button" class="preview-refresh" id="previewRefresh" title="Recarregar site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M20 11a8 8 0 0 0-14.9-4" />
+                        <path d="M4 4v5h5" />
+                        <path d="M4 13a8 8 0 0 0 14.9 4" />
+                        <path d="M20 20v-5h-5" />
+                    </svg>
+                </button>
+
+                <a href="/" target="_blank" class="preview-open-link" title="Abrir em nova aba">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <path d="M15 3h6v6" />
+                        <path d="M10 14 21 3" />
+                    </svg>
+                </a>
+
+                <button type="button" class="preview-close" id="previewClose" title="Fechar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 6l12 12" />
+                        <path d="M18 6L6 18" />
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+
+
+        <div class="preview-body">
+
+            <div class="preview-loading" id="previewLoading">
+                <span class="preview-spinner"></span>
+                A carregar o site...
+            </div>
+
+            <iframe
+                id="previewIframe"
+                class="preview-iframe"
+                src="about:blank"
+                title="Pré-visualização do site"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         SCRIPT
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           ANO
+           ========================================================= */
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+
+        /* =========================================================
+           MOBILE MENU
+           ========================================================= */
+
+        const mobileMenu = document.getElementById("mobileMenu");
+        const adminSidebar = document.getElementById("adminSidebar");
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener("click", function () {
+                adminSidebar.classList.toggle("open");
+            });
+        }
+
+        document.querySelectorAll(".admin-nav a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                adminSidebar.classList.remove("open");
+            });
+        });
+
+
+        /* =========================================================
+           PARTICLES
+           ========================================================= */
+
+        const particles = document.getElementById("particles");
+
+        if (particles) {
+            for (let i = 0; i < 45; i++) {
+                const p = document.createElement("span");
+                p.className = "particle";
+                p.style.left = Math.random() * 100 + "%";
+                p.style.top = Math.random() * 100 + "%";
+                p.style.animationDuration = (4 + Math.random() * 8) + "s";
+                p.style.animationDelay = (Math.random() * 5) + "s";
+                particles.appendChild(p);
+            }
+        }
+
+
+        /* =========================================================
+           DRAWER ESQUERDO — ÍNDICE
+           ========================================================= */
+
+        const contentMenuToggle = document.getElementById("contentMenuToggle");
+        const contentDrawer = document.getElementById("contentDrawer");
+        const contentDrawerOverlay = document.getElementById("contentDrawerOverlay");
+        const contentDrawerClose = document.getElementById("contentDrawerClose");
+        const contentDrawerShowAll = document.getElementById("contentDrawerShowAll");
+
+
+        function abrirContentDrawer() {
+            contentDrawer.classList.add("open");
+            contentDrawerOverlay.classList.add("open");
+            document.body.classList.add("drawer-open");
+        }
+
+        function fecharContentDrawer() {
+            contentDrawer.classList.remove("open");
+            contentDrawerOverlay.classList.remove("open");
+            document.body.classList.remove("drawer-open");
+        }
+
+
+        if (contentMenuToggle) {
+            contentMenuToggle.addEventListener("click", abrirContentDrawer);
+        }
+
+        if (contentDrawerClose) {
+            contentDrawerClose.addEventListener("click", fecharContentDrawer);
+        }
+
+        if (contentDrawerOverlay) {
+            contentDrawerOverlay.addEventListener("click", fecharContentDrawer);
+        }
+
+        if (contentDrawerShowAll) {
+            contentDrawerShowAll.addEventListener("click", function () {
+                fecharContentDrawer();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+
+        /* =========================================================
+           DRAWER DIREITO — PREVIEW (IFRAME DO SITE REAL)
+           ========================================================= */
+
+        const contentPreviewToggle = document.getElementById("contentPreviewToggle");
+        const previewDrawer = document.getElementById("previewDrawer");
+        const previewOverlay = document.getElementById("previewOverlay");
+        const previewClose = document.getElementById("previewClose");
+        const previewRefresh = document.getElementById("previewRefresh");
+        const previewIframe = document.getElementById("previewIframe");
+        const previewLoading = document.getElementById("previewLoading");
+        const previewTitle = document.getElementById("previewTitle");
+
+
+        const SITE_URL = window.location.origin + "/";
+
+
+        function abrirPreview(anchor) {
+
+            previewDrawer.classList.add("open");
+            previewOverlay.classList.add("open");
+            document.body.classList.add("preview-open");
+
+            carregarIframe(anchor);
+
+        }
+
+
+        function fecharPreview() {
+
+            previewDrawer.classList.remove("open");
+            previewOverlay.classList.remove("open");
+            document.body.classList.remove("preview-open");
+
+        }
+
+
+        function carregarIframe(anchor) {
+
+            if (!previewIframe) return;
+
+            if (previewLoading) previewLoading.style.display = "flex";
+
+            if (anchor) {
+                previewTitle.textContent = "Secção: #" + anchor;
+            } else {
+                previewTitle.textContent = "Site público";
+            }
+
+            const src = anchor
+                ? SITE_URL + "#" + anchor
+                : SITE_URL + "?t=" + Date.now();
+
+            previewIframe.src = src;
+
+        }
+
+
+        /* =========================================================
+           WHEN IFRAME LOADS
+           ========================================================= */
+
+        if (previewIframe) {
+
+            previewIframe.addEventListener("load", function () {
+
+                if (previewLoading) previewLoading.style.display = "none";
+
+            });
+
+        }
+
+
+        /* =========================================================
+           BOTÃO GLOBAL — PRÉ-VISUALIZAR
+           ========================================================= */
+
+        if (contentPreviewToggle) {
+
+            contentPreviewToggle.addEventListener("click", function () {
+
+                abrirPreview();
+
+            });
+
+        }
+
+
+        /* =========================================================
+           BOTÕES "VER NO SITE" EM CADA SECÇÃO
+           ========================================================= */
+
+        document.querySelectorAll(".section-preview-button").forEach(function (btn) {
+
+            btn.addEventListener("click", function () {
+
+                const anchor = btn.dataset.anchor;
+                abrirPreview(anchor);
+
+            });
+
+        });
+
+
+        /* =========================================================
+           FECHAR PREVIEW
+           ========================================================= */
+
+        if (previewClose) {
+            previewClose.addEventListener("click", fecharPreview);
+        }
+
+        if (previewOverlay) {
+            previewOverlay.addEventListener("click", fecharPreview);
+        }
+
+        if (previewRefresh) {
+            previewRefresh.addEventListener("click", function () {
+
+                const currentHash =
+                    previewTitle.textContent.startsWith("Secção: #")
+                        ? previewTitle.textContent.replace("Secção: #", "")
+                        : null;
+
+                carregarIframe(currentHash);
+
+            });
+        }
+
+
+        /* =========================================================
+           DRAWER ESQUERDO — SCROLL ATÉ À SECÇÃO + ABRIR PREVIEW
+           ========================================================= */
+
+        document.querySelectorAll(".content-drawer-link").forEach(function (btn) {
+
+            btn.addEventListener("click", function () {
+
+                const targetId = btn.dataset.target;
+                const anchor = btn.dataset.anchor;
+                const target = document.getElementById(targetId);
+
+                if (!target) return;
+
+                fecharContentDrawer();
+
+                setTimeout(function () {
+
+                    const topbar = document.querySelector(".admin-topbar");
+                    const offset = topbar ? topbar.offsetHeight + 20 : 80;
+
+                    const y = target.getBoundingClientRect().top
+                              + window.pageYOffset
+                              - offset;
+
+                    window.scrollTo({ top: y, behavior: "smooth" });
+
+                    document.querySelectorAll(".settings-panel").forEach(function (s) {
+                        s.classList.remove("section-highlight");
+                    });
+
+                    target.classList.add("section-highlight");
+
+                    setTimeout(function () {
+                        target.classList.remove("section-highlight");
+                    }, 1800);
+
+                    if (anchor) {
+                        abrirPreview(anchor);
+                    }
+
+                }, 220);
+
+            });
+
+        });
+
+
+        /* =========================================================
+           SCROLL AUTOMÁTICO APÓS GUARDAR (hash na URL)
+           ========================================================= */
+
+        if (window.location.hash) {
+
+            const alvo = document.querySelector(window.location.hash);
+
+            if (alvo) {
+
+                setTimeout(function () {
+
+                    const topbar = document.querySelector(".admin-topbar");
+                    const offset = topbar ? topbar.offsetHeight + 20 : 80;
+
+                    const y = alvo.getBoundingClientRect().top
+                              + window.pageYOffset
+                              - offset;
+
+                    window.scrollTo({ top: y, behavior: "smooth" });
+
+                    alvo.classList.add("section-highlight");
+
+                    setTimeout(function () {
+                        alvo.classList.remove("section-highlight");
+                    }, 1800);
+
+                }, 300);
+
+            }
+
+        }
+
+
+        /* =========================================================
+           ESC — FECHA DRAWERS
+           ========================================================= */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key !== "Escape") return;
+
+            if (previewDrawer.classList.contains("open")) {
+                fecharPreview();
+            } else if (contentDrawer.classList.contains("open")) {
+                fecharContentDrawer();
+            }
+
+        });
+
+
+        /* =========================================================
+           INTERSECTION OBSERVER
+           ========================================================= */
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: .12 }
+        );
+
+        document
+            .querySelectorAll(".glass-panel, .stat-card, .future-banner")
+            .forEach(function (el) { observer.observe(el); });
+
+
+        /* =========================================================
+           TOPBAR SCROLL
+           ========================================================= */
+
+        window.addEventListener("scroll", function () {
+            const topbar = document.querySelector(".admin-topbar");
+            if (!topbar) return;
+            if (window.scrollY > 15) topbar.classList.add("scrolled");
+            else topbar.classList.remove("scrolled");
+        });
+
+
+        /* =========================================================
+           AUTO-OCULTAR MENSAGENS FLASH
+           ========================================================= */
+
+        setTimeout(function () {
+            document.querySelectorAll(".flash-message").forEach(function (m) {
+                m.style.transition = "opacity .5s ease";
+                m.style.opacity = "0";
+                setTimeout(function () { m.remove(); }, 500);
+            });
+        }, 4000);
+
+    </script>
+
+
+    <!-- =========================================================
+         CSS EXTRA — TOOLBAR + DRAWERS + PREVIEW + IFRAME
+         ========================================================= -->
+
+    <style>
+
+        /* ---------- TOOLBAR ---------- */
+
+        .content-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 0 0 22px 0;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+        }
+
+        .content-toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #1264ff, #6b3cff);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease;
+            box-shadow: 0 6px 18px rgba(18, 100, 255, .28);
+        }
+
+        .content-menu-toggle:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(18, 100, 255, .38);
+        }
+
+        .content-menu-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .content-preview-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #fff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease;
+        }
+
+        .content-preview-toggle:hover {
+            background: rgba(18, 100, 255, .15);
+            border-color: rgba(18, 100, 255, .4);
+        }
+
+        .content-preview-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+
+        /* ---------- BOTÃO "VER NO SITE" EM CADA SECÇÃO ---------- */
+
+        .section-preview-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: rgba(18, 100, 255, .1);
+            border: 1px solid rgba(18, 100, 255, .3);
+            border-radius: 9px;
+            color: #93b8ff;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, color .2s ease;
+        }
+
+        .section-preview-button:hover {
+            background: rgba(18, 100, 255, .2);
+            border-color: rgba(18, 100, 255, .5);
+            color: #fff;
+        }
+
+        .section-preview-button svg {
+            width: 14px;
+            height: 14px;
+        }
+
+
+        /* ---------- FOOTER INLINE POR SECÇÃO ---------- */
+
+        .settings-footer-inline {
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            margin-top: 16px;
+        }
+
+
+        /* ---------- DRAWER ESQUERDO ---------- */
+
+        .content-drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 8, 22, .6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s ease, visibility .3s ease;
+            z-index: 998;
+        }
+
+        .content-drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .content-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 360px;
+            max-width: 88vw;
+            background: linear-gradient(180deg, #07152f 0%, #0a1e42 100%);
+            border-right: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 20px 0 60px rgba(0, 0, 0, .5);
+            transform: translateX(-105%);
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-drawer.open {
+            transform: translateX(0);
+        }
+
+        .content-drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 22px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .content-drawer-label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #1264ff;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .content-drawer-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .content-drawer-close {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .content-drawer-close:hover {
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .content-drawer-close svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .content-drawer-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .content-drawer-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 14px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+
+        .content-drawer-link:hover {
+            background: rgba(18, 100, 255, .1);
+            border-color: rgba(18, 100, 255, .3);
+            transform: translateX(3px);
+        }
+
+        .drawer-link-icon {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #1264ff, #6b3cff);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .drawer-link-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .drawer-link-text strong {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .drawer-link-text small {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .drawer-link-arrow {
+            width: 16px;
+            height: 16px;
+            color: rgba(255, 255, 255, .4);
+            flex-shrink: 0;
+        }
+
+        .content-drawer-footer {
+            padding: 16px 18px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+        }
+
+        .content-drawer-show-all {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .content-drawer-show-all:hover {
+            background: rgba(255, 255, 255, .1);
+        }
+
+        .content-drawer-show-all svg {
+            width: 16px;
+            height: 16px;
+        }
+
+
+        /* ---------- DRAWER DIREITO — PREVIEW ---------- */
+
+        .preview-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 8, 22, .5);
+            backdrop-filter: blur(3px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s ease, visibility .3s ease;
+            z-index: 998;
+        }
+
+        .preview-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .preview-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 720px;
+            max-width: 95vw;
+            background: linear-gradient(180deg, #07152f 0%, #0a1e42 100%);
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, .5);
+            transform: translateX(105%);
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-drawer.open {
+            transform: translateX(0);
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            flex-shrink: 0;
+        }
+
+        .preview-label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #6b3cff;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .preview-header h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .preview-refresh,
+        .preview-close,
+        .preview-open-link {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s ease;
+        }
+
+        .preview-refresh:hover,
+        .preview-close:hover,
+        .preview-open-link:hover {
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .preview-refresh svg,
+        .preview-close svg,
+        .preview-open-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .preview-body {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: #fff;
+            display: block;
+        }
+
+        .preview-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(7, 21, 47, .95);
+            color: rgba(255, 255, 255, .8);
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .preview-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, .15);
+            border-top-color: #1264ff;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+
+        /* ---------- DESTAQUE DA SECÇÃO ---------- */
+
+        .settings-panel.section-highlight {
+            border-color: rgba(18, 100, 255, .6) !important;
+            box-shadow: 0 0 0 1px rgba(18, 100, 255, .4),
+                        0 0 30px rgba(18, 100, 255, .25);
+            transition: border-color .4s ease, box-shadow .4s ease;
+        }
+
+
+        /* ---------- BODY STATES ---------- */
+
+        body.drawer-open,
+        body.preview-open {
+            overflow: hidden;
+        }
+
+
+        /* ---------- RESPONSIVO ---------- */
+
+        @media (max-width: 640px) {
+
+            .content-drawer,
+            .preview-drawer {
+                width: 100%;
+            }
+
+            .content-toolbar {
+                padding: 12px 14px;
+            }
+
+            .content-menu-toggle span,
+            .content-preview-toggle span {
+                display: none;
+            }
+
+            .content-menu-toggle,
+            .content-preview-toggle {
+                padding: 10px 12px;
+            }
+
+        }
+
+    </style>
+
+</body>
+
+</html>

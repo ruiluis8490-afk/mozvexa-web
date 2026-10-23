@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- =========================================================
+         SPRING BOOT
+         ========================================================= -->
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.1</version>
+		<relativePath />
+	</parent>
+
+
+	<!-- =========================================================
+         INFORMAÇÕES DO PROJECTO
+         ========================================================= -->
+
+	<groupId>mz.ruiluis</groupId>
+	<artifactId>RuiLuisSolucoesDigitais</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>RuiLuisSolucoesDigitais</name>
+
+	<description>
+		Promover Serviços - Rui Luís Soluções Digitais
+	</description>
+
+
+	<!-- =========================================================
+         JAVA
+         ========================================================= -->
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+
+	<!-- =========================================================
+         DEPENDÊNCIAS
+         ========================================================= -->
+
+	<dependencies>
+
+
+		<!-- =====================================================
+             THYMELEAF
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             SPRING WEB / MVC
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             SPRING DATA JPA
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             SPRING SECURITY
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             THYMELEAF + SPRING SECURITY
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             MYSQL
+             ===================================================== -->
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<!-- =====================================================
+             ENVIO DE E-MAIL
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+
+		<!-- =====================================================
+             GERAÇÃO DE PDF
+             Apache PDFBox 3.0.8
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+
+
+		<!-- =====================================================
+             TESTES
+             ===================================================== -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+
+	<!-- =========================================================
+         BUILD
+         ========================================================= -->
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+</project>

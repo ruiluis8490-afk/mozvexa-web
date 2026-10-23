@@ -1,0 +1,4753 @@
+<!DOCTYPE html>
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="theme-color" content="#07152f">
+
+	<title>
+		Dashboard | Rui Luís — Soluções Digitais
+	</title>
+
+	<link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+
+<body class="admin-page">
+
+
+	<!-- =========================================================
+     BACKGROUND
+     ========================================================= -->
+
+	<div class="ambient-background">
+
+		<div class="ambient-grid"></div>
+
+		<div class="ambient-orb orb-blue"></div>
+		<div class="ambient-orb orb-purple"></div>
+		<div class="ambient-orb orb-red"></div>
+		<div class="ambient-orb orb-green"></div>
+		<div class="ambient-orb orb-cyan"></div>
+
+		<div class="ambient-glow"></div>
+
+	</div>
+
+
+	<div class="particles" id="particles"></div>
+
+
+	<!-- =========================================================
+     LAYOUT
+     ========================================================= -->
+
+	<div class="admin-layout">
+
+
+		<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+		<aside class="admin-sidebar" id="adminSidebar">
+
+			<div class="admin-brand">
+
+				<div class="brand-logo">
+					<span>MZV</span>
+					<i></i>
+				</div>
+
+				<div class="brand-text">
+
+					<strong>MozVexa</strong>
+
+					<span>
+						Soluções Digitais
+					</span>
+
+				</div>
+
+			</div>
+
+
+			<div class="sidebar-line"></div>
+
+
+			<nav class="admin-nav">
+
+				<span class="nav-title">
+					PRINCIPAL
+				</span>
+
+
+				<a href="#dashboard" class="nav-item active">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<rect x="3" y="3" width="7" height="7" rx="1" />
+
+							<rect x="14" y="3" width="7" height="7" rx="1" />
+
+							<rect x="3" y="14" width="7" height="7" rx="1" />
+
+							<rect x="14" y="14" width="7" height="7" rx="1" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Visão Geral
+					</span>
+
+				</a>
+
+
+				<a href="#pedidos" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M4 4h16v16H4z" />
+							<path d="M8 8h8" />
+							<path d="M8 12h8" />
+							<path d="M8 16h5" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Pedidos
+					</span>
+
+					<span class="nav-badge" th:text="${totalPedidos}">
+						0
+					</span>
+
+				</a>
+
+
+				<a href="#orcamentos" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M4 4h16v16H4z" />
+							<path d="M8 8h8" />
+							<path d="M8 12h5" />
+							<path d="M8 16h8" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Orçamentos
+					</span>
+
+					<span class="nav-badge" th:text="${#lists.size(orcamentos)}">
+						0
+					</span>
+
+				</a>
+
+
+				<span class="nav-title nav-title-space">
+					GESTÃO
+				</span>
+
+
+				<a href="#projectos" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M4 7h6l2 2h8v10H4z" />
+							<path d="M4 7V5h6l2 2" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Projectos
+					</span>
+
+				</a>
+
+
+				<a href="#clientes" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="9" cy="8" r="3" />
+							<path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+
+							<path d="M16 11c2.8.3 5 2.7 5 5.5" />
+							<path d="M15 5.2a3 3 0 0 1 0 5.6" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Clientes
+					</span>
+
+				</a>
+
+
+				<a href="#relatorios" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M4 19V5" />
+							<path d="M4 19h16" />
+
+							<path d="M7 15l3-4 3 2 5-7" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Relatórios
+					</span>
+
+				</a>
+
+
+				<a th:href="@{/admin/conteudo}" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M4 4h16v16H4z" />
+							<path d="M8 8h8" />
+							<path d="M8 12h8" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Conteúdo
+					</span>
+
+				</a>
+
+
+				<a th:href="@{/admin/conteudo}" class="nav-item">
+
+					<span class="nav-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="12" cy="12" r="3" />
+
+							<path
+								d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.1h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.6-1H6v-2.6h.4A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.4a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.6 1z" />
+
+						</svg>
+
+					</span>
+
+					<span class="nav-text">
+						Definições
+					</span>
+
+				</a>
+
+			</nav>
+
+
+			<div class="sidebar-bottom">
+
+				<div class="sidebar-profile">
+
+					<div class="profile-avatar">
+						RL
+					</div>
+
+					<div class="profile-info">
+
+						<strong>
+							Rui Luís
+						</strong>
+
+						<span>
+							Administrador
+						</span>
+
+					</div>
+
+					<span class="profile-online"></span>
+
+				</div>
+
+
+				<form action="/logout" method="post">
+
+					<button type="submit" class="logout-button">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M10 17l5-5-5-5" />
+							<path d="M15 12H3" />
+							<path d="M21 3v18" />
+
+						</svg>
+
+						<span>
+							Terminar sessão
+						</span>
+
+					</button>
+
+				</form>
+
+			</div>
+
+		</aside>
+
+
+		<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+		<main class="admin-main">
+
+
+			<!-- =========================================================
+     TOPBAR
+     ========================================================= -->
+
+			<header class="admin-topbar">
+
+				<div class="topbar-left">
+
+					<button type="button" class="mobile-menu" id="mobileMenu">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+							<path d="M4 6h16" />
+							<path d="M4 12h16" />
+							<path d="M4 18h16" />
+
+						</svg>
+
+					</button>
+
+
+					<div>
+
+						<span class="topbar-label">
+							PAINEL DE CONTROLO
+						</span>
+
+						<h1>
+							Visão Geral
+						</h1>
+
+					</div>
+
+				</div>
+
+
+				<div class="topbar-right">
+
+
+					<!-- PESQUISA -->
+
+					<div class="search-box" id="searchBox">
+
+						<svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="1.8">
+
+							<circle cx="11" cy="11" r="7" />
+							<path d="m20 20-4-4" />
+
+						</svg>
+
+
+						<input type="text" id="pedidoSearch" placeholder="Pesquisar pedidos..." autocomplete="off">
+
+
+						<button type="button" class="search-clear" id="searchClear" title="Limpar pesquisa">
+
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+								<path d="M6 6l12 12" />
+								<path d="M18 6L6 18" />
+
+							</svg>
+
+						</button>
+
+					</div>
+
+
+					<button type="button" class="topbar-button" id="searchToggle" title="Pesquisar">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="11" cy="11" r="7" />
+							<path d="m20 20-4-4" />
+
+						</svg>
+
+					</button>
+
+
+					<button type="button" class="notification-button" title="Notificações">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+							<path d="M10 21h4" />
+
+						</svg>
+
+						<span></span>
+
+					</button>
+
+
+					<div class="system-status">
+
+						<span class="status-dot"></span>
+
+						Sistema online
+
+					</div>
+
+
+					<div class="topbar-profile">
+
+						<div class="topbar-avatar">
+							RL
+						</div>
+
+						<div>
+
+							<strong>
+								Rui Luís
+							</strong>
+
+							<span>
+								Administrador
+							</span>
+
+						</div>
+
+
+						<svg class="profile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="1.8">
+
+							<path d="m6 9 6 6 6-6" />
+
+						</svg>
+
+					</div>
+
+				</div>
+
+			</header>
+
+
+			<!-- =========================================================
+     DASHBOARD CONTENT
+     ========================================================= -->
+
+			<div class="dashboard-content" id="dashboard">
+
+
+				<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+				<section class="dashboard-hero">
+
+					<div class="hero-content">
+
+						<div class="hero-badge">
+
+							<span class="badge-pulse"></span>
+
+							SISTEMA OPERACIONAL
+
+						</div>
+
+
+						<h2>
+
+							Olá, <span>Rui.</span>
+
+						</h2>
+
+
+						<p>
+
+							Bem-vindo ao teu centro de controlo.
+							Gere pedidos, prepara orçamentos e acompanha
+							os teus projectos a partir de um único espaço.
+
+						</p>
+
+
+						<div class="hero-actions">
+
+							<a href="#orcamentos" class="hero-button" onclick="abrirNovoOrcamento()">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M12 5v14" />
+									<path d="M5 12h14" />
+
+								</svg>
+
+								Novo orçamento
+
+							</a>
+
+
+							<a href="/" class="hero-link">
+
+								Ver website
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M5 12h14" />
+									<path d="m13 6 6 6-6 6" />
+
+								</svg>
+
+							</a>
+
+						</div>
+
+					</div>
+
+
+					<div class="hero-visual">
+
+						<div class="visual-ring ring-one"></div>
+						<div class="visual-ring ring-two"></div>
+						<div class="visual-ring ring-three"></div>
+
+
+						<div class="visual-core">
+
+							<div class="core-inner">
+								RL
+							</div>
+
+						</div>
+
+
+						<div class="floating-code code-one">
+							JAVA
+						</div>
+
+						<div class="floating-code code-two">
+							WEB
+						</div>
+
+						<div class="floating-code code-three">
+							DIGITAL
+						</div>
+
+					</div>
+
+				</section>
+
+
+				<!-- =========================================================
+     STATS
+     ========================================================= -->
+
+				<section class="stats-grid">
+
+
+					<article class="stat-card stat-blue">
+
+						<div class="stat-glow"></div>
+
+						<div class="stat-header">
+
+							<div class="stat-icon">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M4 4h16v16H4z" />
+									<path d="M8 8h8" />
+									<path d="M8 12h8" />
+									<path d="M8 16h5" />
+
+								</svg>
+
+							</div>
+
+							<span class="stat-label">
+								TOTAL PEDIDOS
+							</span>
+
+						</div>
+
+
+						<div class="stat-number" th:text="${totalPedidos}">
+							0
+						</div>
+
+
+						<div class="stat-description">
+							Pedidos registados
+						</div>
+
+
+						<div class="stat-bottom">
+
+							<span class="stat-line"></span>
+
+							Base de pedidos
+
+						</div>
+
+					</article>
+
+
+					<article class="stat-card stat-purple">
+
+						<div class="stat-glow"></div>
+
+						<div class="stat-header">
+
+							<div class="stat-icon">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M4 4h16v16H4z" />
+									<path d="M8 8h8" />
+									<path d="M8 12h5" />
+									<path d="M8 16h8" />
+
+								</svg>
+
+							</div>
+
+							<span class="stat-label">
+								NOVOS
+							</span>
+
+						</div>
+
+
+						<div class="stat-number" th:text="${pedidosNovos}">
+							0
+						</div>
+
+
+						<div class="stat-description">
+							Aguardam análise
+						</div>
+
+
+						<div class="stat-bottom">
+
+							<span class="stat-line"></span>
+
+							Pedidos recentes
+
+						</div>
+
+					</article>
+
+
+					<article class="stat-card stat-orange">
+
+						<div class="stat-glow"></div>
+
+						<div class="stat-header">
+
+							<div class="stat-icon">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<circle cx="12" cy="12" r="8" />
+									<path d="M12 8v4l3 2" />
+
+								</svg>
+
+							</div>
+
+							<span class="stat-label">
+								EM ANÁLISE
+							</span>
+
+						</div>
+
+
+						<div class="stat-number" th:text="${pedidosEmAnalise}">
+							0
+						</div>
+
+
+						<div class="stat-description">
+							Em avaliação
+						</div>
+
+
+						<div class="stat-bottom">
+
+							<span class="stat-line"></span>
+
+							Em tratamento
+
+						</div>
+
+					</article>
+
+
+					<article class="stat-card stat-green">
+
+						<div class="stat-glow"></div>
+
+						<div class="stat-header">
+
+							<div class="stat-icon">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="m5 12 4 4L19 6" />
+
+								</svg>
+
+							</div>
+
+							<span class="stat-label">
+								CONCLUÍDOS
+							</span>
+
+						</div>
+
+
+						<div class="stat-number" th:text="${pedidosConcluidos}">
+							0
+						</div>
+
+
+						<div class="stat-description">
+							Projectos concluídos
+						</div>
+
+
+						<div class="stat-bottom">
+
+							<span class="stat-line"></span>
+
+							Trabalho finalizado
+
+						</div>
+
+					</article>
+
+				</section>
+
+
+				<!-- =========================================================
+     DASHBOARD GRID
+     ========================================================= -->
+
+				<div class="dashboard-grid">
+
+
+					<section class="glass-panel chart-panel" id="relatorios">
+
+						<div class="panel-header">
+
+							<div>
+
+								<span class="panel-label">
+									ACTIVIDADE
+								</span>
+
+								<h3>
+									Evolução dos pedidos
+								</h3>
+
+							</div>
+
+						</div>
+
+
+						<div class="chart-area">
+
+							<div class="chart-y-axis">
+
+								<span>100</span>
+								<span>75</span>
+								<span>50</span>
+								<span>25</span>
+								<span>0</span>
+
+							</div>
+
+
+							<div class="chart-body">
+
+								<div class="chart-grid-line line-100"></div>
+								<div class="chart-grid-line line-75"></div>
+								<div class="chart-grid-line line-50"></div>
+								<div class="chart-grid-line line-25"></div>
+								<div class="chart-grid-line line-0"></div>
+
+
+								<svg class="activity-chart" viewBox="0 0 700 230" preserveAspectRatio="none">
+
+									<defs>
+
+										<linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+
+											<stop offset="0%" stop-color="#1264ff" stop-opacity=".28" />
+
+											<stop offset="100%" stop-color="#1264ff" stop-opacity="0" />
+
+										</linearGradient>
+
+									</defs>
+
+
+									<path class="chart-area-fill" d="M0,190
+                         C70,170 100,185 145,145
+                         S220,165 280,115
+                         S360,130 410,100
+                         S500,125 550,70
+                         S640,95 700,45
+                         L700,230
+                         L0,230 Z" />
+
+
+									<path class="chart-line" d="M0,190
+                         C70,170 100,185 145,145
+                         S220,165 280,115
+                         S360,130 410,100
+                         S500,125 550,70
+                         S640,95 700,45" />
+
+
+									<circle class="chart-point" cx="145" cy="145" r="4" />
+
+									<circle class="chart-point" cx="280" cy="115" r="4" />
+
+									<circle class="chart-point" cx="410" cy="100" r="4" />
+
+									<circle class="chart-point" cx="550" cy="70" r="4" />
+
+									<circle class="chart-point" cx="700" cy="45" r="4" />
+
+								</svg>
+
+
+								<div class="chart-x-axis">
+
+									<span>Jan</span>
+									<span>Fev</span>
+									<span>Mar</span>
+									<span>Abr</span>
+									<span>Mai</span>
+									<span>Jun</span>
+									<span>Jul</span>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</section>
+
+
+					<section class="glass-panel distribution-panel">
+
+						<div class="panel-header">
+
+							<div>
+
+								<span class="panel-label">
+									DISTRIBUIÇÃO
+								</span>
+
+								<h3>
+									Estado dos pedidos
+								</h3>
+
+							</div>
+
+						</div>
+
+
+						<div class="distribution">
+
+							<div class="donut">
+
+								<div class="donut-inner">
+
+									<strong th:text="${totalPedidos}">
+										0
+									</strong>
+
+									<span>
+										PEDIDOS
+									</span>
+
+								</div>
+
+							</div>
+
+
+							<div class="distribution-list">
+
+								<div class="distribution-item">
+
+									<span class="distribution-dot blue"></span>
+
+									<span>
+										Novos
+									</span>
+
+									<strong th:text="${pedidosNovos}">
+										0
+									</strong>
+
+								</div>
+
+
+								<div class="distribution-item">
+
+									<span class="distribution-dot purple"></span>
+
+									<span>
+										Em análise
+									</span>
+
+									<strong th:text="${pedidosEmAnalise}">
+										0
+									</strong>
+
+								</div>
+
+
+								<div class="distribution-item">
+
+									<span class="distribution-dot green"></span>
+
+									<span>
+										Concluídos
+									</span>
+
+									<strong th:text="${pedidosConcluidos}">
+										0
+									</strong>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</section>
+
+				</div>
+
+
+				<!-- =========================================================
+     PEDIDOS
+     ========================================================= -->
+
+				<section class="glass-panel requests-panel" id="pedidos">
+
+
+					<div class="panel-header requests-header">
+
+						<div>
+
+							<span class="panel-label">
+								GESTÃO DE PEDIDOS
+							</span>
+
+							<h3>
+								Pedidos de clientes
+							</h3>
+
+						</div>
+
+
+						<div class="requests-actions">
+
+
+							<div class="status-filter">
+
+								<select id="statusFilter">
+
+									<option value="TODOS">
+										Todos os estados
+									</option>
+
+									<option value="NOVA">
+										Novos
+									</option>
+
+									<option value="EM_ANALISE">
+										Em análise
+									</option>
+
+									<option value="ORCAMENTO_ENVIADO">
+										Orçamento enviado
+									</option>
+
+									<option value="EM_NEGOCIACAO">
+										Em negociação
+									</option>
+
+									<option value="APROVADA">
+										Aprovados
+									</option>
+
+									<option value="EM_DESENVOLVIMENTO">
+										Em desenvolvimento
+									</option>
+
+									<option value="CONCLUIDA">
+										Concluídos
+									</option>
+
+								</select>
+
+							</div>
+
+
+							<button type="button" class="refresh-button" onclick="actualizarPagina()"
+								title="Actualizar pedidos">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M20 11a8 8 0 0 0-14.9-4" />
+									<path d="M4 4v5h5" />
+
+									<path d="M4 13a8 8 0 0 0 14.9 4" />
+									<path d="M20 20v-5h-5" />
+
+								</svg>
+
+							</button>
+
+						</div>
+
+					</div>
+
+
+					<div class="requests-table-wrapper">
+
+						<table class="requests-table" id="requestsTable">
+
+							<thead>
+
+								<tr>
+
+									<th>
+										CLIENTE
+									</th>
+
+									<th>
+										SERVIÇO
+									</th>
+
+									<th>
+										CONTACTO
+									</th>
+
+									<th>
+										DATA
+									</th>
+
+									<th>
+										ESTADO
+									</th>
+
+									<th>
+										ACÇÕES
+									</th>
+
+								</tr>
+
+							</thead>
+
+
+							<tbody id="requestsTableBody">
+
+
+								<tr th:each="pedido : ${pedidos}" th:attr="data-estado=${pedido.estado.name()}">
+
+
+									<td>
+
+										<div class="request-client">
+
+											<div class="request-avatar"
+												th:text="${#strings.substring(pedido.nome,0,1).toUpperCase()}">
+												R
+											</div>
+
+
+											<div>
+
+												<strong th:text="${pedido.nome}">
+													Cliente
+												</strong>
+
+												<span th:text="${pedido.email}">
+													email
+												</span>
+
+											</div>
+
+										</div>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-service" th:text="${pedido.servico}">
+											Serviço
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-contact" th:text="${pedido.telefone}">
+											Contacto
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-date"
+											th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}">
+											00/00/0000
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-status" th:classappend="${pedido.estado.name() == 'NOVA'} ? ' new' :
+                                          (${pedido.estado.name() == 'EM_ANALISE'} ? ' analysis' :
+                                          (${pedido.estado.name() == 'ORCAMENTO_ENVIADO'} ? ' budget' :
+                                          (${pedido.estado.name() == 'EM_NEGOCIACAO'} ? ' negotiation' :
+                                          (${pedido.estado.name() == 'APROVADA'} ? ' approved' :
+                                          (${pedido.estado.name() == 'EM_DESENVOLVIMENTO'} ? ' development' :
+                                          (${pedido.estado.name() == 'CONCLUIDA'} ? ' completed' : ''))))))">
+
+											<i></i>
+
+											<span th:switch="${pedido.estado.name()}">
+
+												<span th:case="'NOVA'">
+													Nova
+												</span>
+
+												<span th:case="'EM_ANALISE'">
+													Em análise
+												</span>
+
+												<span th:case="'ORCAMENTO_ENVIADO'">
+													Orçamento enviado
+												</span>
+
+												<span th:case="'EM_NEGOCIACAO'">
+													Em negociação
+												</span>
+
+												<span th:case="'APROVADA'">
+													Aprovada
+												</span>
+
+												<span th:case="'EM_DESENVOLVIMENTO'">
+													Em desenvolvimento
+												</span>
+
+												<span th:case="'CONCLUIDA'">
+													Concluída
+												</span>
+
+											</span>
+
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<div class="request-actions-group">
+
+
+											<!-- VER PEDIDO -->
+
+											<button type="button" class="view-request" title="Ver pedido"
+												th:onclick="'verPedido(' + ${pedido.id} + ')'">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" />
+
+													<circle cx="12" cy="12" r="2.5" />
+
+												</svg>
+
+											</button>
+
+
+											<!-- CRIAR ORÇAMENTO -->
+
+											<button type="button" class="view-request create-budget-action"
+												title="Criar orçamento"
+												th:onclick="'abrirNovoOrcamento(' + ${pedido.id} + ')'">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<path d="M4 4h16v16H4z" />
+
+													<path d="M8 8h8" />
+													<path d="M8 12h5" />
+
+													<path d="M15 15v5" />
+													<path d="M12.5 17.5h5" />
+
+												</svg>
+
+											</button>
+
+										</div>
+
+									</td>
+
+								</tr>
+
+
+								<tr id="searchNoResults" class="search-no-results-row">
+
+									<td colspan="6">
+
+										<div class="search-no-results">
+
+											<div class="search-no-results-icon">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<circle cx="11" cy="11" r="7" />
+
+													<path d="m20 20-4-4" />
+
+												</svg>
+
+											</div>
+
+											<strong>
+												Nenhum pedido encontrado
+											</strong>
+
+											<span>
+												Tenta pesquisar com outro nome,
+												email, serviço ou estado.
+											</span>
+
+										</div>
+
+									</td>
+
+								</tr>
+
+							</tbody>
+
+						</table>
+
+					</div>
+
+
+					<div class="empty-requests" th:if="${pedidos == null || #lists.isEmpty(pedidos)}">
+
+						<div class="empty-icon">
+
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+								<path d="M4 4h16v16H4z" />
+								<path d="M8 8h8" />
+								<path d="M8 12h8" />
+								<path d="M8 16h5" />
+
+							</svg>
+
+						</div>
+
+						<h4>
+							Ainda não existem pedidos
+						</h4>
+
+						<p>
+							Quando um cliente enviar um pedido através do website,
+							ele aparecerá aqui.
+						</p>
+
+						<button type="button" class="empty-button" onclick="abrirNovoOrcamento()">
+
+							Criar orçamento
+
+						</button>
+
+					</div>
+
+				</section>
+
+
+				<!-- =========================================================
+     ORÇAMENTOS
+     ========================================================= -->
+
+				<section class="glass-panel requests-panel budgets-panel" id="orcamentos">
+
+
+					<div class="panel-header requests-header">
+
+						<div>
+
+							<span class="panel-label">
+								GESTÃO COMERCIAL
+							</span>
+
+							<h3>
+								Orçamentos
+							</h3>
+
+						</div>
+
+
+						<div class="requests-actions">
+
+
+							<div class="live-indicator">
+
+								<span></span>
+
+								Total:
+
+								<strong th:text="${#lists.size(orcamentos)}">
+									0
+								</strong>
+
+							</div>
+
+
+							<!-- NOVO ORÇAMENTO -->
+
+							<button type="button" class="budget-create-button" onclick="abrirNovoOrcamento()">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M12 5v14" />
+									<path d="M5 12h14" />
+
+								</svg>
+
+								Novo orçamento
+
+							</button>
+
+
+							<!-- ACTUALIZAR -->
+
+							<button type="button" class="refresh-button" onclick="actualizarPagina()"
+								title="Actualizar orçamentos">
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="M20 11a8 8 0 0 0-14.9-4" />
+									<path d="M4 4v5h5" />
+
+									<path d="M4 13a8 8 0 0 0 14.9 4" />
+									<path d="M20 20v-5h-5" />
+
+								</svg>
+
+							</button>
+
+						</div>
+
+					</div>
+
+
+					<div class="requests-table-wrapper" th:if="${orcamentos != null && !#lists.isEmpty(orcamentos)}">
+
+
+						<table class="requests-table">
+
+							<thead>
+
+								<tr>
+
+									<th>N.º</th>
+									<th>CLIENTE</th>
+									<th>SERVIÇO</th>
+									<th>VALOR</th>
+									<th>EMISSÃO</th>
+									<th>VALIDADE</th>
+									<th>ESTADO</th>
+									<th>ACÇÕES</th>
+
+								</tr>
+
+							</thead>
+
+
+							<tbody>
+
+
+								<tr th:each="orcamento : ${orcamentos}">
+
+
+									<td>
+
+										<span class="request-service" th:text="${orcamento.numero}">
+											ORC-2026-00001
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<div class="request-client">
+
+											<div class="request-avatar"
+												th:text="${#strings.substring(orcamento.pedido.nome,0,1).toUpperCase()}">
+												R
+											</div>
+
+
+											<div>
+
+												<strong th:text="${orcamento.pedido.nome}">
+													Cliente
+												</strong>
+
+												<span th:text="${orcamento.pedido.email}">
+													email
+												</span>
+
+											</div>
+
+										</div>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-service" th:text="${orcamento.pedido.servico}">
+											Serviço
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<strong class="budget-value"
+											th:text="${#numbers.formatDecimal(orcamento.valor, 1, 2) + ' MT'}">
+											0,00 MT
+										</strong>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-date"
+											th:text="${#temporals.format(orcamento.dataEmissao, 'dd/MM/yyyy')}">
+											00/00/0000
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<span class="request-date"
+											th:text="${#temporals.format(orcamento.validade, 'dd/MM/yyyy')}">
+											00/00/0000
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<span class="budget-status"
+											th:classappend="${orcamento.estado.name().toLowerCase()}">
+
+											<i></i>
+
+											<span th:switch="${orcamento.estado.name()}">
+
+												<span th:case="'RASCUNHO'">
+													Rascunho
+												</span>
+
+												<span th:case="'ENVIADO'">
+													Enviado
+												</span>
+
+												<span th:case="'ACEITE'">
+													Aceite
+												</span>
+
+												<span th:case="'RECUSADO'">
+													Recusado
+												</span>
+
+												<span th:case="'EXPIRADO'">
+													Expirado
+												</span>
+
+												<span th:case="*">
+													Cancelado
+												</span>
+
+											</span>
+
+										</span>
+
+									</td>
+
+
+									<td>
+
+										<div class="request-actions-group">
+
+
+											<!-- EDITAR -->
+
+											<button type="button" class="view-request edit-budget-action"
+												title="Editar orçamento"
+												th:onclick="'editarOrcamento(' + ${orcamento.id} + ')'">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<path d="M12 20h9" />
+
+													<path d="M16.5 3.5
+															 a2.1 2.1 0 0 1 3 3
+															 L8 18
+															 l-4 1
+															 1-4z" />
+
+												</svg>
+
+											</button>
+
+
+											<!-- PDF -->
+
+											<button type="button" class="view-request" title="Gerar PDF"
+												th:onclick="'gerarPdfOrcamento(' + ${orcamento.id} + ')'">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<path d="M6 3h9l4 4v14H6z" />
+
+													<path d="M14 3v5h5" />
+
+													<path d="M8 13h8" />
+													<path d="M8 17h6" />
+
+												</svg>
+
+											</button>
+
+
+											<!-- ELIMINAR -->
+
+											<button type="button" class="view-request delete-budget-action"
+												title="Eliminar orçamento"
+												th:onclick="'eliminarOrcamento(' + ${orcamento.id} + ')'">
+
+												<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="1.8">
+
+													<path d="M4 7h16" />
+
+													<path d="M9 7V4h6v3" />
+
+													<path d="M7 7l1 13h8l1-13" />
+
+													<path d="M10 11v5" />
+													<path d="M14 11v5" />
+
+												</svg>
+
+											</button>
+
+										</div>
+
+									</td>
+
+								</tr>
+
+							</tbody>
+
+						</table>
+
+					</div>
+
+
+					<div class="empty-requests" th:if="${orcamentos == null || #lists.isEmpty(orcamentos)}">
+
+						<div class="empty-icon">
+
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+								<path d="M4 4h16v16H4z" />
+								<path d="M8 8h8" />
+								<path d="M8 12h5" />
+								<path d="M8 16h8" />
+
+							</svg>
+
+						</div>
+
+
+						<h4>
+							Ainda não existem orçamentos
+						</h4>
+
+
+						<p>
+							Selecciona um pedido e cria o primeiro orçamento
+							para o teu cliente.
+						</p>
+
+
+						<button type="button" class="empty-button" onclick="abrirNovoOrcamento()">
+
+							Criar orçamento
+
+						</button>
+
+					</div>
+
+				</section>
+
+
+				<!-- =========================================================
+     BOTTOM GRID
+     ========================================================= -->
+
+				<div class="bottom-dashboard-grid">
+
+
+					<section class="glass-panel" id="projectos">
+
+						<div class="panel-header">
+
+							<div>
+
+								<span class="panel-label">
+									PROJECTOS
+								</span>
+
+								<h3>
+									Actividade recente
+								</h3>
+
+							</div>
+
+						</div>
+
+
+						<div class="project-mini-grid">
+
+
+							<div class="project-mini">
+
+								<div class="project-mini-icon blue">
+									WEB
+								</div>
+
+								<div>
+
+									<strong>
+										Desenvolvimento Web
+									</strong>
+
+									<span>
+										Projecto digital
+									</span>
+
+								</div>
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="m9 18 6-6-6-6" />
+
+								</svg>
+
+							</div>
+
+
+							<div class="project-mini">
+
+								<div class="project-mini-icon purple">
+									APP
+								</div>
+
+								<div>
+
+									<strong>
+										Aplicações
+									</strong>
+
+									<span>
+										Android / Java
+									</span>
+
+								</div>
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="m9 18 6-6-6-6" />
+
+								</svg>
+
+							</div>
+
+
+							<div class="project-mini">
+
+								<div class="project-mini-icon green">
+									SYS
+								</div>
+
+								<div>
+
+									<strong>
+										Sistemas de Gestão
+									</strong>
+
+									<span>
+										Soluções empresariais
+									</span>
+
+								</div>
+
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+									<path d="m9 18 6-6-6-6" />
+
+								</svg>
+
+							</div>
+
+						</div>
+
+					</section>
+
+
+					<section class="glass-panel" id="clientes">
+
+						<div class="panel-header">
+
+							<div>
+
+								<span class="panel-label">
+									CLIENTES
+								</span>
+
+								<h3>
+									Actividade
+								</h3>
+
+							</div>
+
+						</div>
+
+
+						<div class="activity-list">
+
+
+							<div class="activity-item">
+
+								<div class="activity-icon blue">
+
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+										<path d="M12 5v14" />
+										<path d="M5 12h14" />
+
+									</svg>
+
+								</div>
+
+
+								<div>
+
+									<strong>
+										Novos pedidos
+									</strong>
+
+									<span>
+										Pedidos recebidos através do website
+									</span>
+
+								</div>
+
+
+								<span class="activity-check"></span>
+
+							</div>
+
+
+							<div class="activity-item">
+
+								<div class="activity-icon purple">
+
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+										<path d="M4 4h16v16H4z" />
+										<path d="M8 8h8" />
+										<path d="M8 12h5" />
+										<path d="M8 16h8" />
+
+									</svg>
+
+								</div>
+
+
+								<div>
+
+									<strong>
+										Orçamentos
+									</strong>
+
+									<span>
+										Gestão comercial em desenvolvimento
+									</span>
+
+								</div>
+
+
+								<span class="activity-check"></span>
+
+							</div>
+
+
+							<div class="activity-item">
+
+								<div class="activity-icon green">
+
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+										<path d="m5 12 4 4L19 6" />
+
+									</svg>
+
+								</div>
+
+
+								<div>
+
+									<strong>
+										Sistema operacional
+									</strong>
+
+									<span>
+										Todos os serviços principais activos
+									</span>
+
+								</div>
+
+
+								<span class="activity-check"></span>
+
+							</div>
+
+						</div>
+
+					</section>
+
+				</div>
+
+
+				<!-- =========================================================
+     FUTURE
+     ========================================================= -->
+
+				<section class="future-banner" id="definicoes">
+
+					<div class="future-icon">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="12" cy="12" r="3" />
+
+							<path
+								d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.1h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.6-1H6v-2.6h.4A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.4a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.6 1z" />
+
+						</svg>
+
+					</div>
+
+
+					<div>
+
+						<span>
+							PRÓXIMAS FUNCIONALIDADES
+						</span>
+
+						<h3>
+							Mais controlo para o teu negócio
+						</h3>
+
+						<p>
+							Facturação, clientes, relatórios avançados,
+							gestão de projectos e outras funcionalidades
+							serão integradas progressivamente.
+						</p>
+
+					</div>
+
+
+					<div class="future-orbit"></div>
+
+				</section>
+
+
+			</div>
+
+
+			<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+			<footer class="admin-footer">
+
+				<span>
+					© <span id="currentYear"></span>
+					Rui Luís — Soluções Digitais
+				</span>
+
+
+				<span>
+
+					<i></i>
+
+					Sistema operacional
+
+				</span>
+
+			</footer>
+
+
+		</main>
+
+	</div>
+
+
+	<!-- =========================================================
+     MODAL — VER PEDIDO
+     ========================================================= -->
+
+	<div class="request-modal" id="requestModal">
+
+
+		<div class="request-modal-overlay" onclick="fecharPedido()">
+		</div>
+
+
+		<div class="request-modal-card">
+
+
+			<div class="request-modal-header">
+
+				<div>
+
+					<span class="modal-eyebrow">
+						PEDIDO DE SERVIÇO
+					</span>
+
+					<h2>
+						Detalhes do pedido
+					</h2>
+
+					<span class="modal-request-id" id="modalRequestId">
+						Pedido
+					</span>
+
+				</div>
+
+
+				<button type="button" class="modal-close" onclick="fecharPedido()" title="Fechar">
+
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+						<path d="M6 6l12 12" />
+						<path d="M18 6L6 18" />
+
+					</svg>
+
+				</button>
+
+			</div>
+
+
+			<div class="request-modal-content" id="modalContent">
+
+				<div class="modal-loading">
+
+					<span class="modal-spinner"></span>
+
+					A carregar pedido...
+
+				</div>
+
+			</div>
+
+
+			<div class="modal-status-section">
+
+
+				<div class="modal-section-title">
+
+					<div>
+
+						<span>
+							GESTÃO DO PEDIDO
+						</span>
+
+						<strong>
+							Estado actual
+						</strong>
+
+					</div>
+
+
+					<span class="modal-current-status" id="modalCurrentStatus">
+						-
+					</span>
+
+				</div>
+
+
+				<div class="modal-status-control">
+
+
+					<select id="modalStatusSelect">
+
+						<option value="NOVA">
+							Nova
+						</option>
+
+						<option value="EM_ANALISE">
+							Em análise
+						</option>
+
+						<option value="ORCAMENTO_ENVIADO">
+							Orçamento enviado
+						</option>
+
+						<option value="EM_NEGOCIACAO">
+							Em negociação
+						</option>
+
+						<option value="APROVADA">
+							Aprovada
+						</option>
+
+						<option value="EM_DESENVOLVIMENTO">
+							Em desenvolvimento
+						</option>
+
+						<option value="CONCLUIDA">
+							Concluída
+						</option>
+
+					</select>
+
+
+					<button type="button" class="save-status-button" id="saveStatusButton"
+						onclick="alterarEstadoPedido()">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="m5 12 4 4L19 6" />
+
+						</svg>
+
+						Guardar
+
+					</button>
+
+				</div>
+
+
+				<div class="status-message" id="statusMessage">
+				</div>
+
+			</div>
+
+
+			<div class="request-modal-footer">
+
+				<button type="button" class="modal-secondary-button" onclick="fecharPedido()">
+
+					Fechar
+
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- =========================================================
+     MODAL — NOVO ORÇAMENTO
+     ========================================================= -->
+
+	<div class="request-modal budget-modal" id="orcamentoModal">
+
+
+		<div class="request-modal-overlay" onclick="fecharNovoOrcamento()">
+		</div>
+
+
+		<div class="request-modal-card budget-modal-card">
+
+
+			<div class="request-modal-header">
+
+				<div>
+
+					<span class="modal-eyebrow">
+						GESTÃO COMERCIAL
+					</span>
+
+					<h2>
+						Novo orçamento
+					</h2>
+
+					<span class="modal-request-id">
+						Criar proposta para um pedido
+					</span>
+
+				</div>
+
+
+				<button type="button" class="modal-close" onclick="fecharNovoOrcamento()" title="Fechar">
+
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+						<path d="M6 6l12 12" />
+						<path d="M18 6L6 18" />
+
+					</svg>
+
+				</button>
+
+			</div>
+
+
+			<form id="orcamentoForm" class="budget-form">
+
+
+				<div class="budget-form-content">
+
+
+					<!-- PEDIDO -->
+
+					<div class="budget-form-group budget-form-full">
+
+						<label for="orcamentoPedidoId">
+							Pedido / Cliente
+						</label>
+
+
+						<select id="orcamentoPedidoId" name="pedidoId" required>
+
+							<option value="" selected disabled>
+
+								Seleccione um pedido...
+
+							</option>
+
+
+							<option th:each="pedido : ${pedidos}" th:value="${pedido.id}" th:attr="
+                                    data-nome=${pedido.nome},
+                                    data-email=${pedido.email},
+                                    data-telefone=${pedido.telefone},
+                                    data-servico=${pedido.servico}
+                                " th:text="${pedido.nome + ' — ' + pedido.servico}">
+
+								Cliente — Serviço
+
+							</option>
+
+						</select>
+
+					</div>
+
+
+					<!-- CLIENTE INFO -->
+
+					<div class="budget-client-preview" id="budgetClientPreview">
+
+						<div>
+
+							<span>
+								CLIENTE
+							</span>
+
+							<strong id="budgetPreviewNome">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								EMAIL
+							</span>
+
+							<strong id="budgetPreviewEmail">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								CONTACTO
+							</span>
+
+							<strong id="budgetPreviewTelefone">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								SERVIÇO
+							</span>
+
+							<strong id="budgetPreviewServico">
+								-
+							</strong>
+
+						</div>
+
+					</div>
+
+
+					<!-- VALOR -->
+
+					<div class="budget-form-group">
+
+						<label for="orcamentoValor">
+							Valor
+						</label>
+
+
+						<div class="budget-input-money">
+
+							<input type="number" id="orcamentoValor" name="valor" min="0.01" step="0.01"
+								placeholder="0,00" required>
+
+							<span>
+								MT
+							</span>
+
+						</div>
+
+					</div>
+
+
+					<!-- VALIDADE -->
+
+					<div class="budget-form-group">
+
+						<label for="orcamentoValidade">
+							Validade
+						</label>
+
+
+						<input type="date" id="orcamentoValidade" name="validade" required>
+
+					</div>
+
+
+					<!-- DESCRIÇÃO -->
+
+					<div class="budget-form-group budget-form-full">
+
+						<label for="orcamentoDescricao">
+							Descrição do orçamento
+						</label>
+
+
+						<textarea id="orcamentoDescricao" name="descricao" rows="4" maxlength="2000"
+							placeholder="Descreve o serviço, o que está incluído e as condições principais..."
+							required></textarea>
+
+					</div>
+
+
+					<!-- OBSERVAÇÕES -->
+
+					<div class="budget-form-group budget-form-full">
+
+						<label for="orcamentoObservacoes">
+							Observações
+						</label>
+
+
+						<textarea id="orcamentoObservacoes" name="observacoes" rows="3" maxlength="2000"
+							placeholder="Observações adicionais, prazos, condições de pagamento, etc."></textarea>
+
+					</div>
+
+
+					<div class="budget-form-info">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="12" cy="12" r="9" />
+
+							<path d="M12 10v6" />
+							<path d="M12 7h.01" />
+
+						</svg>
+
+
+						<span>
+							O orçamento será criado como
+							<strong>RASCUNHO</strong>.
+							Poderás gerar o PDF antes de o enviar ao cliente.
+						</span>
+
+					</div>
+
+
+					<div class="budget-form-message" id="orcamentoFormMessage">
+					</div>
+
+				</div>
+
+
+				<div class="budget-form-footer">
+
+
+					<button type="button" class="modal-secondary-button" onclick="fecharNovoOrcamento()">
+
+						Cancelar
+
+					</button>
+
+
+					<button type="submit" class="budget-submit-button" id="orcamentoSubmitButton">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="M12 5v14" />
+							<path d="M5 12h14" />
+
+						</svg>
+
+						Criar orçamento
+
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- =========================================================
+     MODAL — EDITAR ORÇAMENTO
+     ========================================================= -->
+
+	<div class="request-modal budget-modal" id="editarOrcamentoModal">
+
+		<div class="request-modal-overlay" onclick="fecharEditarOrcamento()">
+		</div>
+
+
+		<div class="request-modal-card budget-modal-card">
+
+
+			<div class="request-modal-header">
+
+				<div>
+
+					<span class="modal-eyebrow">
+						GESTÃO COMERCIAL
+					</span>
+
+					<h2>
+						Editar orçamento
+					</h2>
+
+					<span class="modal-request-id" id="editarOrcamentoNumero">
+
+						Orçamento
+
+					</span>
+
+				</div>
+
+
+				<button type="button" class="modal-close" onclick="fecharEditarOrcamento()" title="Fechar">
+
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+						<path d="M6 6l12 12" />
+						<path d="M18 6L6 18" />
+
+					</svg>
+
+				</button>
+
+			</div>
+
+
+			<form id="editarOrcamentoForm" class="budget-form">
+
+
+				<div class="budget-form-content">
+
+
+					<!-- CLIENTE -->
+
+					<div class="budget-client-preview active" id="editarBudgetClientPreview">
+
+
+						<div>
+
+							<span>
+								CLIENTE
+							</span>
+
+							<strong id="editarPreviewNome">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								EMAIL
+							</span>
+
+							<strong id="editarPreviewEmail">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								CONTACTO
+							</span>
+
+							<strong id="editarPreviewTelefone">
+								-
+							</strong>
+
+						</div>
+
+
+						<div>
+
+							<span>
+								SERVIÇO
+							</span>
+
+							<strong id="editarPreviewServico">
+								-
+							</strong>
+
+						</div>
+
+					</div>
+
+
+					<!-- VALOR -->
+
+					<div class="budget-form-group">
+
+						<label for="editarOrcamentoValor">
+							Valor
+						</label>
+
+
+						<div class="budget-input-money">
+
+							<input type="number" id="editarOrcamentoValor" min="0.01" step="0.01" placeholder="0,00"
+								required>
+
+							<span>
+								MT
+							</span>
+
+						</div>
+
+					</div>
+
+
+					<!-- VALIDADE -->
+
+					<div class="budget-form-group">
+
+						<label for="editarOrcamentoValidade">
+							Validade
+						</label>
+
+
+						<input type="date" id="editarOrcamentoValidade" required>
+
+					</div>
+
+
+					<!-- DESCRIÇÃO -->
+
+					<div class="budget-form-group budget-form-full">
+
+						<label for="editarOrcamentoDescricao">
+							Descrição do orçamento
+						</label>
+
+
+						<textarea id="editarOrcamentoDescricao" rows="4" maxlength="2000"
+							placeholder="Descreve o serviço, o que está incluído e as condições principais..."
+							required></textarea>
+
+					</div>
+
+
+					<!-- OBSERVAÇÕES -->
+
+					<div class="budget-form-group budget-form-full">
+
+						<label for="editarOrcamentoObservacoes">
+							Observações
+						</label>
+
+
+						<textarea id="editarOrcamentoObservacoes" rows="3" maxlength="2000"
+							placeholder="Observações adicionais, prazos, condições de pagamento, etc."></textarea>
+
+					</div>
+
+
+					<!-- ESTADO -->
+
+					<div class="budget-form-info">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<circle cx="12" cy="12" r="9" />
+
+							<path d="M12 10v6" />
+							<path d="M12 7h.01" />
+
+						</svg>
+
+
+						<span>
+							O número do orçamento e o pedido associado
+							não serão alterados.
+						</span>
+
+					</div>
+
+
+					<div class="budget-form-message" id="editarOrcamentoMessage">
+					</div>
+
+				</div>
+
+
+				<div class="budget-form-footer">
+
+
+					<button type="button" class="modal-secondary-button" onclick="fecharEditarOrcamento()">
+
+						Cancelar
+
+					</button>
+
+
+					<button type="submit" class="budget-submit-button" id="editarOrcamentoSubmitButton">
+
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+							<path d="m5 12 4 4L19 6" />
+
+						</svg>
+
+						Guardar alterações
+
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+	<script>
+
+		/* =========================================================
+		   ANO
+		   ========================================================= */
+
+		document.getElementById("currentYear").textContent =
+			new Date().getFullYear();
+
+
+		/* =========================================================
+		   MOBILE MENU
+		   ========================================================= */
+
+		const mobileMenu =
+			document.getElementById("mobileMenu");
+
+		const adminSidebar =
+			document.getElementById("adminSidebar");
+
+
+		if (mobileMenu) {
+
+			mobileMenu.addEventListener("click", function () {
+
+				adminSidebar.classList.toggle("open");
+
+			});
+
+		}
+
+
+		/* Fechar menu ao clicar numa opção */
+
+		document.querySelectorAll(".admin-nav a").forEach(function (link) {
+
+			link.addEventListener("click", function () {
+
+				adminSidebar.classList.remove("open");
+
+			});
+
+		});
+
+
+		/* =========================================================
+		   PARTICLES
+		   ========================================================= */
+
+		const particles =
+			document.getElementById("particles");
+
+
+		if (particles) {
+
+			for (let i = 0; i < 45; i++) {
+
+				const particle =
+					document.createElement("span");
+
+				particle.className = "particle";
+
+				particle.style.left =
+					Math.random() * 100 + "%";
+
+				particle.style.top =
+					Math.random() * 100 + "%";
+
+				particle.style.animationDuration =
+					(4 + Math.random() * 8) + "s";
+
+				particle.style.animationDelay =
+					(Math.random() * 5) + "s";
+
+				particles.appendChild(particle);
+
+			}
+
+		}
+
+
+		/* =========================================================
+		   PARALLAX
+		   ========================================================= */
+
+		document.addEventListener("mousemove", function (event) {
+
+			const visual =
+				document.querySelector(".hero-visual");
+
+			if (!visual) return;
+
+			const x =
+				(event.clientX / window.innerWidth - 0.5) * 12;
+
+			const y =
+				(event.clientY / window.innerHeight - 0.5) * 12;
+
+			visual.style.transform =
+				"translate(" + x + "px," + y + "px)";
+
+		});
+
+
+		/* =========================================================
+		   COUNTERS
+		   ========================================================= */
+
+		function animarContadores() {
+
+			document.querySelectorAll(".stat-number").forEach(function (element) {
+
+				const target =
+					Number(element.textContent.trim()) || 0;
+
+				if (target === 0) return;
+
+				let current = 0;
+
+				const duration = 900;
+
+				const start = performance.now();
+
+
+				function update(now) {
+
+					const progress =
+						Math.min((now - start) / duration, 1);
+
+					current =
+						Math.floor(target * progress);
+
+					element.textContent =
+						current;
+
+					if (progress < 1) {
+
+						requestAnimationFrame(update);
+
+					} else {
+
+						element.textContent =
+							target;
+
+					}
+
+				}
+
+				requestAnimationFrame(update);
+
+			});
+
+		}
+
+		setTimeout(animarContadores, 250);
+
+
+		/* =========================================================
+		   ACTUALIZAR
+		   ========================================================= */
+
+		function actualizarPagina() {
+
+			window.location.reload();
+
+		}
+
+
+		/* =========================================================
+		   ESTADOS
+		   ========================================================= */
+
+		function formatarEstado(estado) {
+
+			const estados = {
+
+				NOVA: "Nova",
+
+				EM_ANALISE: "Em análise",
+
+				ORCAMENTO_ENVIADO:
+					"Orçamento enviado",
+
+				EM_NEGOCIACAO:
+					"Em negociação",
+
+				APROVADA:
+					"Aprovada",
+
+				EM_DESENVOLVIMENTO:
+					"Em desenvolvimento",
+
+				CONCLUIDA:
+					"Concluída"
+
+			};
+
+			return estados[estado] || estado;
+
+		}
+
+
+		/* =========================================================
+		   DATA
+		   ========================================================= */
+
+		function formatarDataPedido(data) {
+
+			if (!data) return "-";
+
+			try {
+
+				return new Date(data).toLocaleString(
+					"pt-PT",
+					{
+						day: "2-digit",
+						month: "2-digit",
+						year: "numeric",
+						hour: "2-digit",
+						minute: "2-digit"
+					}
+				);
+
+			} catch (error) {
+
+				return data;
+
+			}
+
+		}
+
+
+		/* =========================================================
+		   PEDIDO ACTUAL
+		   ========================================================= */
+
+		let pedidoActualId = null;
+
+
+		/* =========================================================
+		   VER PEDIDO
+		   ========================================================= */
+
+		function verPedido(id) {
+
+			pedidoActualId = id;
+
+
+			const modal =
+				document.getElementById("requestModal");
+
+			const content =
+				document.getElementById("modalContent");
+
+			const requestId =
+				document.getElementById("modalRequestId");
+
+			const statusSelect =
+				document.getElementById("modalStatusSelect");
+
+			const currentStatus =
+				document.getElementById("modalCurrentStatus");
+
+
+			requestId.textContent =
+				"Pedido #" + id;
+
+
+			content.innerHTML = `
+
+         <div class="modal-loading">
+
+             <span class="modal-spinner"></span>
+
+             A carregar pedido...
+
+         </div>
+
+     `;
+
+
+			modal.classList.add("open");
+
+			document.body.classList.add("modal-open");
+
+
+			fetch("/api/pedidos/" + id)
+
+				.then(function (response) {
+
+					if (!response.ok) {
+
+						throw new Error(
+							"Não foi possível carregar o pedido."
+						);
+
+					}
+
+					return response.json();
+
+				})
+
+				.then(function (pedido) {
+
+
+					const estado =
+						pedido.estado || "NOVA";
+
+
+					statusSelect.value =
+						estado;
+
+
+					currentStatus.textContent =
+						formatarEstado(estado);
+
+
+					currentStatus.className =
+						"modal-current-status status-" +
+						estado.toLowerCase();
+
+
+					content.innerHTML = `
+
+                 <div class="modal-info-grid">
+
+
+                     <div class="modal-info-card">
+
+                         <span class="modal-info-label">
+                             Cliente
+                         </span>
+
+                         <strong>
+                             ${escapeHtml(pedido.nome || "-")}
+                         </strong>
+
+                     </div>
+
+
+                     <div class="modal-info-card">
+
+                         <span class="modal-info-label">
+                             Email
+                         </span>
+
+                         <strong>
+                             ${escapeHtml(pedido.email || "-")}
+                         </strong>
+
+                     </div>
+
+
+                     <div class="modal-info-card">
+
+                         <span class="modal-info-label">
+                             Contacto
+                         </span>
+
+                         <strong>
+                             ${escapeHtml(pedido.telefone || "-")}
+                         </strong>
+
+                     </div>
+
+
+                     <div class="modal-info-card">
+
+                         <span class="modal-info-label">
+                             Serviço
+                         </span>
+
+                         <strong>
+                             ${escapeHtml(pedido.servico || "-")}
+                         </strong>
+
+                     </div>
+
+
+                 </div>
+
+
+                 <div class="modal-message-card">
+
+                     <span class="modal-info-label">
+                         Mensagem
+                     </span>
+
+                     <p>
+                         ${escapeHtml(pedido.mensagem || "Sem mensagem.")}
+                     </p>
+
+                 </div>
+
+
+                 <div class="modal-date-card">
+
+                     <span>
+                         Data do pedido
+                     </span>
+
+                     <strong>
+                         ${formatarDataPedido(pedido.dataPedido)}
+                     </strong>
+
+                 </div>
+
+             `;
+
+				})
+
+				.catch(function (error) {
+
+					content.innerHTML = `
+
+                 <div class="modal-error">
+
+                     <svg viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8">
+
+                         <circle cx="12"
+                                 cy="12"
+                                 r="9"/>
+
+                         <path d="M12 8v5"/>
+                         <path d="M12 16h.01"/>
+
+                     </svg>
+
+                     <strong>
+                         Não foi possível carregar o pedido
+                     </strong>
+
+                     <span>
+                         ${escapeHtml(error.message)}
+                     </span>
+
+                 </div>
+
+             `;
+
+				});
+
+		}
+
+
+		/* =========================================================
+		   FECHAR PEDIDO
+		   ========================================================= */
+
+		function fecharPedido() {
+
+			const modal =
+				document.getElementById("requestModal");
+
+			modal.classList.remove("open");
+
+			document.body.classList.remove("modal-open");
+
+			pedidoActualId = null;
+
+		}
+
+
+		/* =========================================================
+		   ALTERAR ESTADO
+		   ========================================================= */
+
+		function alterarEstadoPedido() {
+
+			if (!pedidoActualId) return;
+
+
+			const estado =
+				document.getElementById("modalStatusSelect").value;
+
+			const button =
+				document.getElementById("saveStatusButton");
+
+			const message =
+				document.getElementById("statusMessage");
+
+
+			button.disabled = true;
+
+
+			message.className =
+				"status-message";
+
+			message.textContent =
+				"A guardar...";
+
+
+			fetch(
+				"/api/pedidos/" +
+				pedidoActualId +
+				"/estado?estado=" +
+				encodeURIComponent(estado),
+				{
+					method: "PUT"
+				}
+			)
+
+				.then(function (response) {
+
+					if (!response.ok) {
+
+						return response.text()
+							.then(function (text) {
+
+								throw new Error(
+									text ||
+									"Não foi possível alterar o estado."
+								);
+
+							});
+
+					}
+
+					return response.json();
+
+				})
+
+				.then(function () {
+
+					message.className =
+						"status-message success";
+
+					message.textContent =
+						"Estado actualizado com sucesso.";
+
+					setTimeout(function () {
+
+						window.location.reload();
+
+					}, 700);
+
+				})
+
+				.catch(function (error) {
+
+					message.className =
+						"status-message error";
+
+					message.textContent =
+						error.message ||
+						"Ocorreu um erro.";
+
+				})
+
+				.finally(function () {
+
+					button.disabled = false;
+
+				});
+
+		}
+
+
+		/* =========================================================
+		   PDF ORÇAMENTO
+		   ========================================================= */
+
+		function gerarPdfOrcamento(id) {
+
+			if (!id) return;
+
+			window.open(
+				"/api/orcamentos/" + id + "/pdf",
+				"_blank"
+			);
+
+		}
+
+
+		/* =========================================================
+		   ELIMINAR ORÇAMENTO
+		   ========================================================= */
+
+		function eliminarOrcamento(id) {
+
+			if (!id) return;
+
+
+			const confirmar =
+				window.confirm(
+					"Tem a certeza de que pretende eliminar este orçamento?"
+				);
+
+
+			if (!confirmar) return;
+
+
+			fetch(
+				"/api/orcamentos/" + id,
+				{
+					method: "DELETE"
+				}
+			)
+
+				.then(function (response) {
+
+					if (!response.ok) {
+
+						return response.text()
+							.then(function (text) {
+
+								throw new Error(
+									text ||
+									"Não foi possível eliminar o orçamento."
+								);
+
+							});
+
+					}
+
+					return response.text();
+
+				})
+
+				.then(function () {
+
+					window.location.reload();
+
+				})
+
+				.catch(function (error) {
+
+					alert(
+						error.message ||
+						"Ocorreu um erro ao eliminar o orçamento."
+					);
+
+				});
+
+		}
+
+
+		/* =========================================================
+		   NOVO ORÇAMENTO
+		   ========================================================= */
+
+		const orcamentoModal =
+			document.getElementById("orcamentoModal");
+
+		const orcamentoForm =
+			document.getElementById("orcamentoForm");
+
+		const orcamentoPedidoId =
+			document.getElementById("orcamentoPedidoId");
+
+		const orcamentoValidade =
+			document.getElementById("orcamentoValidade");
+
+		const orcamentoFormMessage =
+			document.getElementById("orcamentoFormMessage");
+
+
+		/* =========================================================
+		   CONFIGURAR VALIDADE
+		   ========================================================= */
+
+		function configurarValidadeOrcamento() {
+
+			if (!orcamentoValidade) return;
+
+			const hoje = new Date();
+
+			const ano = hoje.getFullYear();
+
+			const mes =
+				String(hoje.getMonth() + 1)
+					.padStart(2, "0");
+
+			const dia =
+				String(hoje.getDate())
+					.padStart(2, "0");
+
+			const dataMinima =
+				ano + "-" + mes + "-" + dia;
+
+			orcamentoValidade.min = dataMinima;
+
+		}
+
+
+		/* =========================================================
+		   ABRIR NOVO ORÇAMENTO
+		   ========================================================= */
+
+		function abrirNovoOrcamento(pedidoId) {
+
+			if (!orcamentoModal) return;
+
+
+			if (orcamentoForm) {
+
+				orcamentoForm.reset();
+
+			}
+
+
+			limparPreviewOrcamento();
+
+
+			limparMensagemOrcamento();
+
+
+			configurarValidadeOrcamento();
+
+
+			orcamentoValidade.value = "";
+
+
+			orcamentoModal.classList.add("open");
+
+			document.body.classList.add("modal-open");
+
+
+			if (pedidoId) {
+
+				orcamentoPedidoId.value =
+					String(pedidoId);
+
+				actualizarPreviewOrcamento();
+
+			}
+
+
+			setTimeout(function () {
+
+				if (pedidoId) {
+
+					document.getElementById(
+						"orcamentoValor"
+					).focus();
+
+				} else {
+
+					orcamentoPedidoId.focus();
+
+				}
+
+			}, 150);
+
+		}
+
+
+		/* =========================================================
+		   FECHAR NOVO ORÇAMENTO
+		   ========================================================= */
+
+		function fecharNovoOrcamento() {
+
+			if (!orcamentoModal) return;
+
+
+			orcamentoModal.classList.remove("open");
+
+			document.body.classList.remove("modal-open");
+
+		}
+
+
+		/* =========================================================
+		   PREVIEW DO CLIENTE
+		   ========================================================= */
+
+		function actualizarPreviewOrcamento() {
+
+			if (!orcamentoPedidoId) return;
+
+
+			const option =
+				orcamentoPedidoId.options[
+				orcamentoPedidoId.selectedIndex
+				];
+
+
+			if (!option ||
+				!option.value) {
+
+				limparPreviewOrcamento();
+
+				return;
+
+			}
+
+
+			document.getElementById(
+				"budgetPreviewNome"
+			).textContent =
+				option.dataset.nome || "-";
+
+
+			document.getElementById(
+				"budgetPreviewEmail"
+			).textContent =
+				option.dataset.email || "-";
+
+
+			document.getElementById(
+				"budgetPreviewTelefone"
+			).textContent =
+				option.dataset.telefone || "-";
+
+
+			document.getElementById(
+				"budgetPreviewServico"
+			).textContent =
+				option.dataset.servico || "-";
+
+
+			document.getElementById(
+				"budgetClientPreview"
+			).classList.add("active");
+
+		}
+
+
+		function limparPreviewOrcamento() {
+
+			const preview =
+				document.getElementById(
+					"budgetClientPreview"
+				);
+
+
+			if (preview) {
+
+				preview.classList.remove("active");
+
+			}
+
+
+			const ids = [
+
+				"budgetPreviewNome",
+				"budgetPreviewEmail",
+				"budgetPreviewTelefone",
+				"budgetPreviewServico"
+
+			];
+
+
+			ids.forEach(function (id) {
+
+				const element =
+					document.getElementById(id);
+
+				if (element) {
+
+					element.textContent = "-";
+
+				}
+
+			});
+
+		}
+
+
+		if (orcamentoPedidoId) {
+
+			orcamentoPedidoId.addEventListener(
+				"change",
+				actualizarPreviewOrcamento
+			);
+
+		}
+
+
+		/* =========================================================
+		   LIMPAR MENSAGEM
+		   ========================================================= */
+
+		function limparMensagemOrcamento() {
+
+			if (!orcamentoFormMessage) return;
+
+			orcamentoFormMessage.className =
+				"budget-form-message";
+
+			orcamentoFormMessage.textContent =
+				"";
+
+		}
+
+
+		/* =========================================================
+		   SUBMETER ORÇAMENTO
+		   ========================================================= */
+
+		if (orcamentoForm) {
+
+			orcamentoForm.addEventListener(
+				"submit",
+				function (event) {
+
+					event.preventDefault();
+
+
+					limparMensagemOrcamento();
+
+
+					const submitButton =
+						document.getElementById(
+							"orcamentoSubmitButton"
+						);
+
+
+					const pedidoId =
+						orcamentoPedidoId.value;
+
+
+					const valor =
+						document.getElementById(
+							"orcamentoValor"
+						).value;
+
+
+					const validade =
+						orcamentoValidade.value;
+
+
+					const descricao =
+						document.getElementById(
+							"orcamentoDescricao"
+						).value.trim();
+
+
+					const observacoes =
+						document.getElementById(
+							"orcamentoObservacoes"
+						).value.trim();
+
+
+					if (!pedidoId) {
+
+						mostrarMensagemOrcamento(
+							"Seleccione um pedido.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					if (!valor ||
+						Number(valor) <= 0) {
+
+						mostrarMensagemOrcamento(
+							"Introduza um valor válido.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					if (!validade) {
+
+						mostrarMensagemOrcamento(
+							"Seleccione a validade do orçamento.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					const hoje = new Date();
+
+					hoje.setHours(0, 0, 0, 0);
+
+					const dataValidade =
+						new Date(validade + "T00:00:00");
+
+					if (dataValidade < hoje) {
+
+						mostrarMensagemOrcamento(
+							"A validade do orçamento não pode ser uma data passada.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					if (!descricao) {
+
+						mostrarMensagemOrcamento(
+							"A descrição do orçamento é obrigatória.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					const dados =
+						new URLSearchParams();
+
+
+					dados.append(
+						"pedidoId",
+						pedidoId
+					);
+
+
+					dados.append(
+						"valor",
+						valor
+					);
+
+
+					dados.append(
+						"validade",
+						validade
+					);
+
+
+					dados.append(
+						"descricao",
+						descricao
+					);
+
+
+					if (observacoes) {
+
+						dados.append(
+							"observacoes",
+							observacoes
+						);
+
+					}
+
+
+					submitButton.disabled = true;
+
+
+					submitButton.innerHTML = `
+
+                 <span class="button-spinner"></span>
+
+                 A criar...
+
+             `;
+
+
+					fetch(
+						"/api/orcamentos",
+						{
+							method: "POST",
+
+							headers: {
+								"Content-Type":
+									"application/x-www-form-urlencoded;charset=UTF-8"
+							},
+
+							body: dados.toString()
+
+						}
+					)
+
+						.then(function (response) {
+
+							if (!response.ok) {
+
+								return response.text()
+									.then(function (text) {
+
+										throw new Error(
+											text ||
+											"Não foi possível criar o orçamento."
+										);
+
+									});
+
+							}
+
+							return response.json();
+
+						})
+
+						.then(function () {
+
+							mostrarMensagemOrcamento(
+								"Orçamento criado com sucesso.",
+								"success"
+							);
+
+
+							setTimeout(function () {
+
+								fecharNovoOrcamento();
+
+								window.location.reload();
+
+							}, 700);
+
+						})
+
+						.catch(function (error) {
+
+							mostrarMensagemOrcamento(
+								error.message ||
+								"Ocorreu um erro ao criar o orçamento.",
+								"error"
+							);
+
+						})
+
+						.finally(function () {
+
+							submitButton.disabled = false;
+
+
+							submitButton.innerHTML = `
+
+                     <svg viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8">
+
+                         <path d="M12 5v14"/>
+                         <path d="M5 12h14"/>
+
+                     </svg>
+
+                     Criar orçamento
+
+                 `;
+
+						});
+
+				}
+			);
+
+		}
+
+
+		/* =========================================================
+		   MENSAGEM ORÇAMENTO
+		   ========================================================= */
+
+		function mostrarMensagemOrcamento(
+			mensagem,
+			tipo
+		) {
+
+			if (!orcamentoFormMessage) return;
+
+
+			orcamentoFormMessage.className =
+				"budget-form-message " + tipo;
+
+
+			orcamentoFormMessage.textContent =
+				mensagem;
+
+		}
+
+
+		/* =========================================================
+		   EDITAR ORÇAMENTO
+		   ========================================================= */
+
+		let orcamentoActualId = null;
+
+
+		const editarOrcamentoModal =
+			document.getElementById(
+				"editarOrcamentoModal"
+			);
+
+
+		const editarOrcamentoForm =
+			document.getElementById(
+				"editarOrcamentoForm"
+			);
+
+
+		const editarOrcamentoMessage =
+			document.getElementById(
+				"editarOrcamentoMessage"
+			);
+
+
+		/* =========================================================
+		   EDITAR
+		   ========================================================= */
+
+		function editarOrcamento(id) {
+
+			if (!id) return;
+
+
+			orcamentoActualId = id;
+
+
+			limparMensagemEditarOrcamento();
+
+
+			const modal =
+				document.getElementById(
+					"editarOrcamentoModal"
+				);
+
+
+			modal.classList.add("open");
+
+			document.body.classList.add(
+				"modal-open"
+			);
+
+
+			document.getElementById(
+				"editarOrcamentoNumero"
+			).textContent =
+				"A carregar orçamento #" + id;
+
+
+			document.getElementById(
+				"editarOrcamentoValor"
+			).value = "";
+
+
+			document.getElementById(
+				"editarOrcamentoValidade"
+			).value = "";
+
+
+			document.getElementById(
+				"editarOrcamentoDescricao"
+			).value = "";
+
+
+			document.getElementById(
+				"editarOrcamentoObservacoes"
+			).value = "";
+
+
+			fetch(
+				"/api/orcamentos/" + id
+			)
+
+				.then(function (response) {
+
+					if (!response.ok) {
+
+						return response.text()
+							.then(function (text) {
+
+								throw new Error(
+									text ||
+									"Não foi possível carregar o orçamento."
+								);
+
+							});
+
+					}
+
+					return response.json();
+
+				})
+
+				.then(function (orcamento) {
+
+
+					const estado =
+						orcamento.estado;
+
+
+					if (
+						estado === "ACEITE" ||
+						estado === "RECUSADO" ||
+						estado === "EXPIRADO" ||
+						estado === "CANCELADO"
+					) {
+
+						throw new Error(
+							"Este orçamento não pode ser editado porque se encontra no estado " +
+							formatarEstadoOrcamento(estado) +
+							"."
+						);
+
+					}
+
+
+					document.getElementById(
+						"editarOrcamentoNumero"
+					).textContent =
+						orcamento.numero ||
+						"Orçamento #" + id;
+
+
+					document.getElementById(
+						"editarOrcamentoValor"
+					).value =
+						orcamento.valor || "";
+
+
+					document.getElementById(
+						"editarOrcamentoValidade"
+					).value =
+						orcamento.validade || "";
+
+
+					document.getElementById(
+						"editarOrcamentoDescricao"
+					).value =
+						orcamento.descricao || "";
+
+
+					document.getElementById(
+						"editarOrcamentoObservacoes"
+					).value =
+						orcamento.observacoes || "";
+
+
+					if (orcamento.pedido) {
+
+						document.getElementById(
+							"editarPreviewNome"
+						).textContent =
+							orcamento.pedido.nome || "-";
+
+
+						document.getElementById(
+							"editarPreviewEmail"
+						).textContent =
+							orcamento.pedido.email || "-";
+
+
+						document.getElementById(
+							"editarPreviewTelefone"
+						).textContent =
+							orcamento.pedido.telefone || "-";
+
+
+						document.getElementById(
+							"editarPreviewServico"
+						).textContent =
+							orcamento.pedido.servico || "-";
+
+					}
+
+				})
+
+				.catch(function (error) {
+
+					mostrarMensagemEditarOrcamento(
+						error.message ||
+						"Não foi possível carregar o orçamento.",
+						"error"
+					);
+
+				});
+
+		}
+
+
+		/* =========================================================
+		   FECHAR
+		   ========================================================= */
+
+		function fecharEditarOrcamento() {
+
+			if (!editarOrcamentoModal) return;
+
+
+			editarOrcamentoModal.classList.remove(
+				"open"
+			);
+
+
+			document.body.classList.remove(
+				"modal-open"
+			);
+
+
+			orcamentoActualId = null;
+
+		}
+
+
+		/* =========================================================
+		   FORMATAR ESTADO
+		   ========================================================= */
+
+		function formatarEstadoOrcamento(
+			estado
+		) {
+
+			const estados = {
+
+				RASCUNHO: "Rascunho",
+
+				ENVIADO: "Enviado",
+
+				ACEITE: "Aceite",
+
+				RECUSADO: "Recusado",
+
+				EXPIRADO: "Expirado",
+
+				CANCELADO: "Cancelado"
+
+			};
+
+
+			return estados[estado] ||
+				estado ||
+				"-";
+
+		}
+
+
+		/* =========================================================
+		   MENSAGEM
+		   ========================================================= */
+
+		function limparMensagemEditarOrcamento() {
+
+			if (!editarOrcamentoMessage) return;
+
+
+			editarOrcamentoMessage.className =
+				"budget-form-message";
+
+
+			editarOrcamentoMessage.textContent =
+				"";
+
+		}
+
+
+		function mostrarMensagemEditarOrcamento(
+			mensagem,
+			tipo
+		) {
+
+			if (!editarOrcamentoMessage) return;
+
+
+			editarOrcamentoMessage.className =
+				"budget-form-message " + tipo;
+
+
+			editarOrcamentoMessage.textContent =
+				mensagem;
+
+		}
+
+
+		/* =========================================================
+		   SUBMETER EDIÇÃO
+		   ========================================================= */
+
+		if (editarOrcamentoForm) {
+
+			editarOrcamentoForm.addEventListener(
+				"submit",
+				function (event) {
+
+					event.preventDefault();
+
+
+					limparMensagemEditarOrcamento();
+
+
+					if (!orcamentoActualId) {
+
+						mostrarMensagemEditarOrcamento(
+							"Orçamento inválido.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					const valor =
+						document.getElementById(
+							"editarOrcamentoValor"
+						).value;
+
+
+					const validade =
+						document.getElementById(
+							"editarOrcamentoValidade"
+						).value;
+
+
+					const descricao =
+						document.getElementById(
+							"editarOrcamentoDescricao"
+						).value.trim();
+
+
+					const observacoes =
+						document.getElementById(
+							"editarOrcamentoObservacoes"
+						).value.trim();
+
+
+					if (
+						!valor ||
+						Number(valor) <= 0
+					) {
+
+						mostrarMensagemEditarOrcamento(
+							"Introduza um valor válido.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					if (!validade) {
+
+						mostrarMensagemEditarOrcamento(
+							"Seleccione a validade do orçamento.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					const hoje =
+						new Date();
+
+					hoje.setHours(
+						0,
+						0,
+						0,
+						0
+					);
+
+
+					const dataValidade =
+						new Date(
+							validade + "T00:00:00"
+						);
+
+
+					if (dataValidade < hoje) {
+
+						mostrarMensagemEditarOrcamento(
+							"A validade do orçamento não pode ser uma data passada.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					if (!descricao) {
+
+						mostrarMensagemEditarOrcamento(
+							"A descrição do orçamento é obrigatória.",
+							"error"
+						);
+
+						return;
+
+					}
+
+
+					const dados =
+						new URLSearchParams();
+
+
+					dados.append(
+						"valor",
+						valor
+					);
+
+
+					dados.append(
+						"validade",
+						validade
+					);
+
+
+					dados.append(
+						"descricao",
+						descricao
+					);
+
+
+					if (observacoes) {
+
+						dados.append(
+							"observacoes",
+							observacoes
+						);
+
+					}
+
+
+					const button =
+						document.getElementById(
+							"editarOrcamentoSubmitButton"
+						);
+
+
+					button.disabled = true;
+
+
+					button.innerHTML = `
+
+	                    <span class="button-spinner"></span>
+
+	                    A guardar...
+
+	                `;
+
+
+					fetch(
+						"/api/orcamentos/" +
+						orcamentoActualId,
+						{
+							method: "PUT",
+
+							headers: {
+
+								"Content-Type":
+									"application/x-www-form-urlencoded;charset=UTF-8"
+
+							},
+
+							body:
+								dados.toString()
+
+						}
+					)
+
+						.then(function (response) {
+
+							if (!response.ok) {
+
+								return response.text()
+									.then(function (text) {
+
+										throw new Error(
+											text ||
+											"Não foi possível editar o orçamento."
+										);
+
+									});
+
+							}
+
+							return response.json();
+
+						})
+
+						.then(function () {
+
+							mostrarMensagemEditarOrcamento(
+								"Orçamento actualizado com sucesso.",
+								"success"
+							);
+
+
+							setTimeout(function () {
+
+								fecharEditarOrcamento();
+
+								window.location.reload();
+
+							}, 700);
+
+						})
+
+						.catch(function (error) {
+
+							mostrarMensagemEditarOrcamento(
+								error.message ||
+								"Ocorreu um erro ao actualizar o orçamento.",
+								"error"
+							);
+
+						})
+
+						.finally(function () {
+
+							button.disabled = false;
+
+
+							button.innerHTML = `
+
+	                            <svg viewBox="0 0 24 24"
+	                                 fill="none"
+	                                 stroke="currentColor"
+	                                 stroke-width="1.8">
+
+	                                <path d="m5 12 4 4L19 6"/>
+
+	                            </svg>
+
+	                            Guardar alterações
+
+	                        `;
+
+						});
+
+				}
+			);
+
+		}
+
+
+		/* =========================================================
+		   ESCAPE HTML
+		   ========================================================= */
+
+		function escapeHtml(value) {
+
+			return String(value || "")
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(/"/g, "&quot;")
+				.replace(/'/g, "&#039;");
+
+		}
+
+
+		/* =========================================================
+		   ESC — FECHAR MODAIS
+		   ========================================================= */
+
+		document.addEventListener(
+			"keydown",
+			function (event) {
+
+				if (event.key !== "Escape") return;
+
+
+				const budgetOpen =
+					orcamentoModal &&
+					orcamentoModal.classList.contains("open");
+
+
+				const editBudgetOpen =
+					editarOrcamentoModal &&
+					editarOrcamentoModal.classList.contains("open");
+
+
+				const requestModal =
+					document.getElementById(
+						"requestModal"
+					);
+
+
+				const requestOpen =
+					requestModal &&
+					requestModal.classList.contains("open");
+
+
+				if (editBudgetOpen) {
+
+					fecharEditarOrcamento();
+
+				} else if (budgetOpen) {
+
+					fecharNovoOrcamento();
+
+				} else if (requestOpen) {
+
+					fecharPedido();
+
+				}
+
+			}
+		);
+
+
+		/* =========================================================
+		   INTERSECTION OBSERVER
+		   ========================================================= */
+
+		const observer =
+			new IntersectionObserver(
+				function (entries) {
+
+					entries.forEach(function (entry) {
+
+						if (entry.isIntersecting) {
+
+							entry.target.classList.add(
+								"visible"
+							);
+
+						}
+
+					});
+
+				},
+				{
+					threshold: .12
+				}
+			);
+
+
+		document
+			.querySelectorAll(
+				".stat-card, .glass-panel, .future-banner"
+			)
+			.forEach(function (element) {
+
+				observer.observe(element);
+
+			});
+
+
+		/* =========================================================
+		   TOPBAR SCROLL
+		   ========================================================= */
+
+		window.addEventListener(
+			"scroll",
+			function () {
+
+				const topbar =
+					document.querySelector(
+						".admin-topbar"
+					);
+
+
+				if (!topbar) return;
+
+
+				if (window.scrollY > 15) {
+
+					topbar.classList.add(
+						"scrolled"
+					);
+
+				} else {
+
+					topbar.classList.remove(
+						"scrolled"
+					);
+
+				}
+
+			}
+		);
+
+
+		/* =========================================================
+		   PESQUISA
+		   ========================================================= */
+
+		const searchBox =
+			document.getElementById(
+				"searchBox"
+			);
+
+
+		const searchToggle =
+			document.getElementById(
+				"searchToggle"
+			);
+
+
+		const pedidoSearch =
+			document.getElementById(
+				"pedidoSearch"
+			);
+
+
+		const searchClear =
+			document.getElementById(
+				"searchClear"
+			);
+
+
+		const statusFilter =
+			document.getElementById(
+				"statusFilter"
+			);
+
+
+		const requestsTableBody =
+			document.getElementById(
+				"requestsTableBody"
+			);
+
+
+		const searchNoResults =
+			document.getElementById(
+				"searchNoResults"
+			);
+
+
+		if (searchToggle) {
+
+			searchToggle.addEventListener(
+				"click",
+				function () {
+
+					searchBox.classList.toggle(
+						"active"
+					);
+
+
+					if (
+						searchBox.classList.contains(
+							"active"
+						)
+					) {
+
+						pedidoSearch.focus();
+
+					}
+
+				}
+			);
+
+		}
+
+
+		function pesquisarPedidos() {
+
+			if (!requestsTableBody) return;
+
+
+			const termo =
+				pedidoSearch.value
+					.trim()
+					.toLowerCase();
+
+
+			const estado =
+				statusFilter.value;
+
+
+			const rows =
+				requestsTableBody.querySelectorAll(
+					"tr[data-estado]"
+				);
+
+
+			let encontrados = 0;
+
+
+			rows.forEach(function (row) {
+
+				const texto =
+					row.textContent
+						.toLowerCase();
+
+
+				const rowEstado =
+					row.dataset.estado;
+
+
+				const correspondeTexto =
+					!termo ||
+					texto.includes(termo);
+
+
+				const correspondeEstado =
+					estado === "TODOS" ||
+					rowEstado === estado;
+
+
+				if (
+					correspondeTexto &&
+					correspondeEstado
+				) {
+
+					row.style.display = "";
+
+					encontrados++;
+
+				} else {
+
+					row.style.display =
+						"none";
+
+				}
+
+			});
+
+
+			if (searchNoResults) {
+
+				if (encontrados === 0) {
+
+					searchNoResults.style.display =
+						"table-row";
+
+					searchNoResults
+						.querySelector(
+							".search-no-results"
+						)
+						.classList.add("show");
+
+				} else {
+
+					searchNoResults.style.display =
+						"none";
+
+					searchNoResults
+						.querySelector(
+							".search-no-results"
+						)
+						.classList.remove("show");
+
+				}
+
+			}
+
+
+			if (searchClear) {
+
+				searchClear.classList.toggle(
+					"visible",
+					termo.length > 0
+				);
+
+			}
+
+		}
+
+
+		if (pedidoSearch) {
+
+			pedidoSearch.addEventListener(
+				"input",
+				pesquisarPedidos
+			);
+
+		}
+
+
+		if (statusFilter) {
+
+			statusFilter.addEventListener(
+				"change",
+				pesquisarPedidos
+			);
+
+		}
+
+
+		if (searchClear) {
+
+			searchClear.addEventListener(
+				"click",
+				function () {
+
+					pedidoSearch.value = "";
+
+					pesquisarPedidos();
+
+					pedidoSearch.focus();
+
+				}
+			);
+
+		}
+
+	</script>
+
+
+</body>
+
+</html>

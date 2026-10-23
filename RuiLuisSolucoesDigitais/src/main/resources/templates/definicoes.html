@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="pt-PT" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#07152f">
+
+    <title>Definições | MozVexa Admin</title>
+
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+</head>
+A
+
+<body class="admin-page">
+
+
+    <!-- =========================================================
+         BACKGROUND
+         ========================================================= -->
+
+    <div class="ambient-background">
+
+        <div class="ambient-grid"></div>
+
+        <div class="ambient-orb orb-blue"></div>
+        <div class="ambient-orb orb-purple"></div>
+        <div class="ambient-orb orb-red"></div>
+        <div class="ambient-orb orb-green"></div>
+        <div class="ambient-orb orb-cyan"></div>
+
+        <div class="ambient-glow"></div>
+
+    </div>
+
+
+    <div class="particles" id="particles"></div>
+
+
+    <!-- =========================================================
+         LAYOUT
+         ========================================================= -->
+
+    <div class="admin-layout">
+
+
+        <!-- =========================================================
+             SIDEBAR
+             ========================================================= -->
+
+        <aside class="admin-sidebar" id="adminSidebar">
+
+            <div class="admin-brand">
+
+                <div class="brand-logo">
+                    <span>MZV</span>
+                    <i></i>
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>MozVexa</strong>
+
+                    <span>Soluções Digitais</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-line"></div>
+
+
+            <nav class="admin-nav">
+
+                <span class="nav-title">PRINCIPAL</span>
+
+
+                <a th:href="@{/admin}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Dashboard</span>
+
+                </a>
+
+
+                <a th:href="@{/admin#pedidos}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h8" />
+                            <path d="M8 16h5" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Pedidos</span>
+
+                    <span class="nav-badge" th:text="${totalPedidos}">0</span>
+
+                </a>
+
+
+                <a th:href="@{/admin#orcamentos}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h5" />
+                            <path d="M8 16h8" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Orçamentos</span>
+
+                </a>
+
+
+                <span class="nav-title nav-title-space">GESTÃO</span>
+
+
+                <a th:href="@{/admin#projectos}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="M4 7h6l2 2h8v10H4z" />
+                            <path d="M4 7V5h6l2 2" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Projectos</span>
+
+                </a>
+
+
+                <a th:href="@{/admin#clientes}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <circle cx="9" cy="8" r="3" />
+                            <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                            <path d="M16 11c2.8.3 5 2.7 5 5.5" />
+                            <path d="M15 5.2a3 3 0 0 1 0 5.6" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Clientes</span>
+
+                </a>
+
+
+                <a th:href="@{/admin#relatorios}" class="nav-item">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="M4 19V5" />
+                            <path d="M4 19h16" />
+                            <path d="M7 15l3-4 3 2 5-7" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Relatórios</span>
+
+                </a>
+
+
+                <a th:href="@{/admin/definicoes}" class="nav-item active">
+
+                    <span class="nav-icon">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <circle cx="12" cy="12" r="3" />
+
+                            <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.1h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.6-1H6v-2.6h.4A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.4a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1V14h-.1a1.7 1.7 0 0 0-1.6 1z" />
+
+                        </svg>
+
+                    </span>
+
+                    <span class="nav-text">Definições</span>
+
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-profile">
+
+                    <div class="profile-avatar">RL</div>
+
+                    <div class="profile-info">
+
+                        <strong>Rui Luís</strong>
+
+                        <span>Administrador</span>
+
+                    </div>
+
+                    <span class="profile-online"></span>
+
+                </div>
+
+
+                <form th:action="@{/logout}" method="post">
+
+                    <button type="submit" class="logout-button">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="M10 17l5-5-5-5" />
+                            <path d="M15 12H3" />
+                            <path d="M21 3v18" />
+
+                        </svg>
+
+                        <span>Terminar sessão</span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================================================
+             MAIN
+             ========================================================= -->
+
+        <main class="admin-main">
+
+
+            <!-- =========================================================
+                 TOPBAR
+                 ========================================================= -->
+
+            <header class="admin-topbar">
+
+                <div class="topbar-left">
+
+                    <button type="button" class="mobile-menu" id="mobileMenu">
+
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+                            <path d="M4 6h16" />
+                            <path d="M4 12h16" />
+                            <path d="M4 18h16" />
+
+                        </svg>
+
+                    </button>
+
+
+                    <div>
+
+                        <span class="topbar-label">PAINEL DE CONTROLO</span>
+
+                        <h1>Definições</h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="system-status">
+
+                        <span class="status-dot"></span>
+
+                        Sistema online
+
+                    </div>
+
+
+                    <div class="topbar-profile">
+
+                        <div class="topbar-avatar">RL</div>
+
+                        <div>
+
+                            <strong>Rui Luís</strong>
+
+                            <span>Administrador</span>
+
+                        </div>
+
+                        <svg class="profile-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                            <path d="m6 9 6 6 6-6" />
+
+                        </svg>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================================================
+                 CONTEÚDO — DEFINIÇÕES
+                 ========================================================= -->
+
+            <div class="dashboard-content">
+
+
+                <!-- =================================================
+                     MENSAGENS FLASH
+                     ================================================= -->
+
+                <div th:if="${sucesso}"
+                     class="flash-message flash-success">
+
+                    ✓ <span th:text="${sucesso}"></span>
+
+                </div>
+
+                <div th:if="${erro}"
+                     class="flash-message flash-error">
+
+                    ⚠ <span th:text="${erro}"></span>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     HERO DAS DEFINIÇÕES
+                     ================================================= -->
+
+                <section class="dashboard-hero settings-hero">
+
+                    <div class="hero-content">
+
+                        <div class="hero-badge">
+
+                            <span class="badge-pulse"></span>
+
+                            CONFIGURAÇÕES DO SISTEMA
+
+                        </div>
+
+                        <h2>
+                            Definições <span>Gerais</span>
+                        </h2>
+
+                        <p>
+                            Gere as informações da empresa, contactos e credenciais
+                            de acesso ao painel. As alterações são aplicadas
+                            imediatamente.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     FORMULÁRIO — INFORMAÇÕES DA EMPRESA
+                     ================================================= -->
+
+                <section class="glass-panel settings-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-label">INFORMAÇÕES</span>
+
+                            <h3>Dados da empresa</h3>
+
+                        </div>
+
+                        <span class="settings-tag">Público</span>
+
+                    </div>
+
+
+                    <form class="settings-form"
+                          th:action="@{/admin/definicoes/empresa}"
+                          method="post">
+
+
+                        <div class="settings-grid">
+
+
+                            <div class="settings-group">
+
+                                <label for="nomeEmpresa">Nome da empresa</label>
+
+                                <input type="text"
+                                       id="nomeEmpresa"
+                                       name="nome"
+                                       th:value="${configuracao.nomeEmpresa}"
+                                       required>
+
+                            </div>
+
+
+                            <div class="settings-group">
+
+                                <label for="emailEmpresa">E-mail de contacto</label>
+
+                                <input type="email"
+                                       id="emailEmpresa"
+                                       name="email"
+                                       th:value="${configuracao.emailEmpresa}"
+                                       required>
+
+                            </div>
+
+
+                            <div class="settings-group">
+
+                                <label for="telefoneEmpresa">Telefone</label>
+
+                                <input type="tel"
+                                       id="telefoneEmpresa"
+                                       name="telefone"
+                                       th:value="${configuracao.telefoneEmpresa}">
+
+                            </div>
+
+
+                            <div class="settings-group">
+
+                                <label for="whatsappEmpresa">WhatsApp</label>
+
+                                <input type="tel"
+                                       id="whatsappEmpresa"
+                                       name="whatsapp"
+                                       th:value="${configuracao.whatsappEmpresa}">
+
+                            </div>
+
+
+                            <div class="settings-group settings-full">
+
+                                <label for="enderecoEmpresa">Endereço</label>
+
+                                <input type="text"
+                                       id="enderecoEmpresa"
+                                       name="endereco"
+                                       th:value="${configuracao.enderecoEmpresa}">
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="settings-footer">
+
+                            <button type="submit" class="settings-save-button">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                                    <path d="m5 12 4 4L19 6" />
+
+                                </svg>
+
+                                Guardar alterações
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     FORMULÁRIO — SEGURANÇA
+                     ================================================= -->
+
+                <section class="glass-panel settings-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-label">SEGURANÇA</span>
+
+                            <h3>Credenciais de acesso</h3>
+
+                        </div>
+
+                        <span class="settings-tag warning">Privado</span>
+
+                    </div>
+
+
+                    <form class="settings-form"
+                          th:action="@{/admin/definicoes/password}"
+                          method="post">
+
+
+                        <div class="settings-grid">
+
+
+                            <div class="settings-group">
+
+                                <label for="username">Utilizador</label>
+
+                                <input type="text"
+                                       id="username"
+                                       name="username"
+                                       th:value="${configuracao.username}"
+                                       placeholder="Nome de utilizador"
+                                       required>
+
+                            </div>
+
+
+                            <div class="settings-group">
+
+                                <label for="novaPassword">Nova palavra-passe</label>
+
+                                <input type="password"
+                                       id="novaPassword"
+                                       name="password"
+                                       placeholder="Deixa em branco para não alterar">
+
+                            </div>
+
+
+                            <div class="settings-group settings-full">
+
+                                <label for="confirmarPassword">Confirmar palavra-passe</label>
+
+                                <input type="password"
+                                       id="confirmarPassword"
+                                       name="confirmPassword"
+                                       placeholder="Repete a nova palavra-passe">
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="settings-info">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M12 10v6" />
+                                <path d="M12 7h.01" />
+
+                            </svg>
+
+                            <span>
+                                A palavra-passe deve ter pelo menos <strong>6 caracteres</strong>.
+                            </span>
+
+                        </div>
+
+
+                        <div class="settings-footer">
+
+                            <button type="submit" class="settings-save-button">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+                                    <path d="m5 12 4 4L19 6" />
+
+                                </svg>
+
+                                Alterar palavra-passe
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     INFORMAÇÃO DO SISTEMA
+                     ================================================= -->
+
+                <section class="glass-panel settings-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="panel-label">SISTEMA</span>
+
+                            <h3>Informações técnicas</h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-info-grid">
+
+                        <div class="settings-info-card">
+
+                            <span>VERSÃO</span>
+
+                            <strong>1.0.0</strong>
+
+                        </div>
+
+                        <div class="settings-info-card">
+
+                            <span>STACK</span>
+
+                            <strong>Spring Boot + MySQL</strong>
+
+                        </div>
+
+                        <div class="settings-info-card">
+
+                            <span>ÚLTIMA ACTUALIZAÇÃO</span>
+
+                            <strong>2026</strong>
+
+                        </div>
+
+                        <div class="settings-info-card">
+
+                            <span>ESTADO</span>
+
+                            <strong class="settings-status-ok">Operacional</strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+            </div>
+
+
+
+            <!-- =========================================================
+                 FOOTER
+                 ========================================================= -->
+
+            <footer class="admin-footer">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    MozVexa — Soluções Digitais
+                </span>
+
+                <span>
+                    <i></i>
+                    Sistema operacional
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         SCRIPT
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           ANO AUTOMÁTICO
+           ========================================================= */
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+
+
+        /* =========================================================
+           PARTICLES
+           ========================================================= */
+
+        const particles =
+            document.getElementById("particles");
+
+        if (particles) {
+
+            for (let i = 0; i < 45; i++) {
+
+                const particle =
+                    document.createElement("span");
+
+                particle.className = "particle";
+
+                particle.style.left =
+                    Math.random() * 100 + "%";
+
+                particle.style.top =
+                    Math.random() * 100 + "%";
+
+                particle.style.animationDuration =
+                    (4 + Math.random() * 8) + "s";
+
+                particle.style.animationDelay =
+                    (Math.random() * 5) + "s";
+
+                particles.appendChild(particle);
+
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE MENU
+           ========================================================= */
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const adminSidebar =
+            document.getElementById("adminSidebar");
+
+        if (mobileMenu) {
+
+            mobileMenu.addEventListener("click", function () {
+
+                adminSidebar.classList.toggle("open");
+
+            });
+
+        }
+
+
+        document.querySelectorAll(".admin-nav a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                adminSidebar.classList.remove("open");
+
+            });
+
+        });
+
+
+        /* =========================================================
+           INTERSECTION OBSERVER — animação de entrada dos painéis
+           ========================================================= */
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        document
+            .querySelectorAll(".glass-panel, .stat-card, .future-banner")
+            .forEach(function (element) {
+
+                observer.observe(element);
+
+            });
+
+
+        /* =========================================================
+           TOPBAR SCROLL
+           ========================================================= */
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                const topbar =
+                    document.querySelector(".admin-topbar");
+
+                if (!topbar) return;
+
+                if (window.scrollY > 15) {
+
+                    topbar.classList.add("scrolled");
+
+                } else {
+
+                    topbar.classList.remove("scrolled");
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           AUTO-OCULTAR MENSAGENS FLASH (após 4 segundos)
+           ========================================================= */
+
+        setTimeout(function () {
+
+            document
+                .querySelectorAll(".flash-message")
+                .forEach(function (msg) {
+
+                    msg.style.transition = "opacity .5s ease";
+                    msg.style.opacity = "0";
+
+                    setTimeout(function () {
+                        msg.remove();
+                    }, 500);
+
+                });
+
+        }, 4000);
+
+    </script>
+
+</body>
+
+</html>

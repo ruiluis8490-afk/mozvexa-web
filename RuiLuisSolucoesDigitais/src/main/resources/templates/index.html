@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MozVexa — Soluções Digitais</title>
+
+    <meta name="description"
+        content="MozVexa — Soluções Digitais. Desenvolvimento de sistemas, aplicações web, Android, bases de dados, automação e soluções empresariais.">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <!-- =========================================================
+     FUNDO ANIMADO
+     ========================================================= -->
+
+    <div class="background-effects">
+
+        <div class="ambient-orb orb-blue"></div>
+        <div class="ambient-orb orb-purple"></div>
+        <div class="ambient-orb orb-red"></div>
+        <div class="ambient-orb orb-green"></div>
+
+        <div class="grid-background"></div>
+
+        <!-- Relâmpago -->
+        <div class="lightning lightning-one">
+            <svg viewBox="0 0 120 220" aria-hidden="true">
+                <path d="M75 5 L25 105 L58 105 L35 215 L100 92 L65 92 Z" />
+            </svg>
+        </div>
+
+        <div class="lightning lightning-two">
+            <svg viewBox="0 0 120 220" aria-hidden="true">
+                <path d="M75 5 L25 105 L58 105 L35 215 L100 92 L65 92 Z" />
+            </svg>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+     PÁSSAROS
+     ========================================================= -->
+
+    <div class="birds-container" aria-hidden="true">
+
+        <div class="bird bird-one">
+            <svg viewBox="0 0 120 60">
+                <path d="M5 30 Q25 5 55 28 Q85 5 115 30" />
+            </svg>
+        </div>
+
+        <div class="bird bird-two">
+            <svg viewBox="0 0 120 60">
+                <path d="M5 30 Q25 5 55 28 Q85 5 115 30" />
+            </svg>
+        </div>
+
+        <div class="bird bird-three">
+            <svg viewBox="0 0 120 60">
+                <path d="M5 30 Q25 5 55 28 Q85 5 115 30" />
+            </svg>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+     WHATSAPP FLOATING BUTTON
+     ========================================================= -->
+
+    <a th:href="'https://wa.me/258' + ${#strings.replace(config.whatsappEmpresa, ' ', '')} + '?text=Olá%20MozVexa,%20gostaria%20de%20saber%20mais%20sobre%20as%20vossas%20soluções%20digitais.'"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar via WhatsApp">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+
+        <span class="whatsapp-tooltip">
+            Fale conosco no WhatsApp
+        </span>
+
+    </a>
+
+
+    <!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+    <header class="site-header">
+
+        <div class="container nav-container">
+
+            <a href="#inicio" class="brand">
+
+                <div class="brand-logo">
+                    <img th:src="@{/imagens/logo-mozvexa.png}" alt="MozVexa" class="brand-logo-img">
+                </div>
+
+                <div class="brand-text">
+                    <strong th:text="${config.nomeEmpresa}">MozVexa</strong>
+                    <span>Soluções Digitais</span>
+                </div>
+
+            </a>
+
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav class="main-nav" id="mainNav">
+
+                <a href="#inicio" class="nav-link active">
+                    Início
+                </a>
+
+                <a href="#servicos" class="nav-link">
+                    Serviços
+                </a>
+
+                <a href="#projectos" class="nav-link">
+                    Projectos
+                </a>
+
+                <a href="#sobre" class="nav-link">
+                    Sobre
+                </a>
+
+                <a href="#processo" class="nav-link">
+                    Processo
+                </a>
+
+                <a href="#contactos" class="nav-link">
+                    Contactos
+                </a>
+
+                <a th:href="@{/solicitar}" class="nav-button">
+                    Solicitar orçamento
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+     HERO
+     ========================================================= -->
+
+    <main>
+
+        <section id="inicio" class="hero">
+
+            <div class="hero-light"></div>
+
+            <div class="container hero-container">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-badge">
+
+                        <span class="status-dot"></span>
+
+                        <span th:text="${config.heroBadge}">Desenvolvimento de soluções digitais</span>
+
+                    </div>
+
+
+                    <h1>
+
+                        <span th:text="${config.heroTitulo}">Transformamos ideias em</span>
+
+                        <span class="gradient-text">
+                            soluções digitais.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description" th:text="${config.heroDescricao}">
+
+                        Desenvolvemos sistemas, aplicações web, aplicações Android
+                        e soluções de gestão que ajudam empresas e pessoas a
+                        transformar problemas em resultados.
+
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a href="#projectos" class="btn btn-primary">
+                            Ver projectos
+                            <span>→</span>
+                        </a>
+
+                        <a href="#contactos" class="btn btn-secondary">
+                            Fale conosco
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="stat">
+
+                            <strong>Java</strong>
+                            <span>Desenvolvimento</span>
+
+                        </div>
+
+                        <div class="stat">
+
+                            <strong>Spring Boot</strong>
+                            <span>Backend</span>
+
+                        </div>
+
+                        <div class="stat">
+
+                            <strong>Android</strong>
+                            <span>Mobile</span>
+
+                        </div>
+
+                        <div class="stat">
+
+                            <strong>MySQL</strong>
+                            <span>Dados</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+             CODE WINDOW
+             ================================================= -->
+
+                <div class="hero-visual reveal">
+
+                    <div class="code-window">
+
+                        <div class="window-top">
+
+                            <div class="window-buttons">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span class="window-title">
+                                MozVexaApplication.java
+                            </span>
+
+                        </div>
+
+
+                        <div class="code-content">
+
+                            <pre><code><span class="code-purple">@SpringBootApplication</span>
+<span class="code-blue">public class</span> MozVexaApplication {
+
+    <span class="code-blue">public static void</span> main(
+        String[] args) {
+
+        SpringApplication
+            .run(
+                MozVexa.class,
+                args
+            );
+    }
+}</code></pre>
+
+                        </div>
+
+
+                        <div class="terminal">
+
+                            <span class="terminal-dot"></span>
+
+                            <span>
+                                Sistema iniciado com sucesso...
+                            </span>
+
+                            <span class="terminal-cursor">
+                                _
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Floating Cards -->
+
+                    <div class="floating-card card-development">
+
+                        <div class="floating-icon purple-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <div>
+                            <strong>Desenvolvimento</strong>
+                            <span>Sistemas personalizados</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-database">
+
+                        <div class="floating-icon green-icon">
+                            DB
+                        </div>
+
+                        <div>
+                            <strong>MySQL</strong>
+                            <span>Dados seguros</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card card-mobile">
+
+                        <div class="floating-icon red-icon">
+                            A
+                        </div>
+
+                        <div>
+                            <strong>Android</strong>
+                            <span>Aplicações móveis</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-bottom-glow"></div>
+
+        </section>
+
+
+        <!-- =========================================================
+     TECNOLOGIAS
+     ========================================================= -->
+
+        <section class="technologies">
+
+            <div class="container">
+
+                <div class="section-mini-title">
+                    Tecnologias que utilizamos
+                </div>
+
+                <div class="technology-list">
+
+                    <div class="technology java">
+                        <span>J</span>
+                        Java
+                    </div>
+
+                    <div class="technology spring">
+                        <span>S</span>
+                        Spring Boot
+                    </div>
+
+                    <div class="technology mysql">
+                        <span>DB</span>
+                        MySQL
+                    </div>
+
+                    <div class="technology kotlin">
+                        <span>K</span>
+                        Kotlin
+                    </div>
+
+                    <div class="technology android">
+                        <span>A</span>
+                        Android
+                    </div>
+
+                    <div class="technology javascript">
+                        <span>JS</span>
+                        JavaScript
+                    </div>
+
+                    <div class="technology html">
+                        <span>&lt;&gt;</span>
+                        HTML
+                    </div>
+
+                    <div class="technology css">
+                        <span>#</span>
+                        CSS
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     SERVIÇOS
+     ========================================================= -->
+
+        <section id="servicos" class="section services-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-label">
+                        SERVIÇOS
+                    </span>
+
+                    <h2 th:text="${config.servicosTitulo}">
+                        Soluções para diferentes necessidades.
+                    </h2>
+
+                    <p th:text="${config.servicosDescricao}">
+                        Da ideia inicial até ao sistema final,
+                        desenvolvemos soluções adaptadas às necessidades
+                        de cada projecto.
+                    </p>
+
+                </div>
+
+
+                <div class="services-grid">
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-blue">
+                            &lt;/&gt;
+                        </div>
+
+                        <span class="service-number">01</span>
+
+                        <h3>
+                            Desenvolvimento de Sistemas
+                        </h3>
+
+                        <p>
+                            Sistemas empresariais personalizados para
+                            automatizar processos e organizar operações.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-purple">
+                            WEB
+                        </div>
+
+                        <span class="service-number">02</span>
+
+                        <h3>
+                            Desenvolvimento Web
+                        </h3>
+
+                        <p>
+                            Websites modernos, portais, sistemas web
+                            e plataformas digitais.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-green">
+                            AND
+                        </div>
+
+                        <span class="service-number">03</span>
+
+                        <h3>
+                            Aplicações Android
+                        </h3>
+
+                        <p>
+                            Aplicações móveis desenvolvidas para
+                            Android com interfaces modernas e funcionais.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-red">
+                            DB
+                        </div>
+
+                        <span class="service-number">04</span>
+
+                        <h3>
+                            Bases de Dados
+                        </h3>
+
+                        <p>
+                            Estruturação, integração e gestão de bases
+                            de dados para aplicações.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-blue">
+                            ERP
+                        </div>
+
+                        <span class="service-number">05</span>
+
+                        <h3>
+                            Sistemas de Gestão
+                        </h3>
+
+                        <p>
+                            Soluções para empresas, clientes, vendas,
+                            facturação, crédito e gestão.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+
+                    <article class="service-card reveal">
+
+                        <div class="service-icon icon-purple">
+                            AUTO
+                        </div>
+
+                        <span class="service-number">06</span>
+
+                        <h3>
+                            Automação
+                        </h3>
+
+                        <p>
+                            Automatização de tarefas e processos para
+                            aumentar produtividade e reduzir erros.
+                        </p>
+
+                        <div class="service-line"></div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     PROJECTOS
+     ========================================================= -->
+
+        <section id="projectos" class="section projects-section">
+
+            <div class="container">
+
+                <!-- CABEÇALHO -->
+
+                <div class="section-heading reveal">
+
+                    <span class="section-label">
+                        PROJECTOS
+                    </span>
+
+                    <h2 th:text="${config.projectosTitulo}">
+                        Alguns projectos desenvolvidos.
+                    </h2>
+
+                    <p th:text="${config.projectosDescricao}">
+                        Projectos reais desenvolvidos para resolver
+                        problemas concretos através da tecnologia.
+                    </p>
+
+                </div>
+
+
+                <!-- =================================================
+         GRELHA DE PROJECTOS
+         ================================================= -->
+
+                <div class="projects-grid">
+
+
+                    <!-- =================================================
+             PROJECTO 01 — SEVENE TAXA JUSTA
+             ================================================= -->
+
+                    <article class="project-card project-red reveal">
+
+                        <div class="project-top">
+
+                            <span class="project-category">
+                                Gestão empresarial
+                            </span>
+
+                            <span class="project-status">
+                                Sistema
+                            </span>
+
+                        </div>
+
+
+                        <!-- MOCKUP DO SISTEMA -->
+
+                        <div class="project-visual">
+
+                            <div class="dashboard-mini">
+
+
+                                <!-- SIDEBAR -->
+
+                                <div class="dashboard-sidebar">
+
+                                    <div class="sevene-sidebar-logo">
+                                        STJ
+                                    </div>
+
+                                    <div class="sevene-menu">
+
+                                        <span class="active">
+                                            Dashboard
+                                        </span>
+
+                                        <span>
+                                            Clientes
+                                        </span>
+
+                                        <span>
+                                            Empréstimos
+                                        </span>
+
+                                        <span>
+                                            Pagamentos
+                                        </span>
+
+                                        <span>
+                                            Garantias
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- CONTEÚDO -->
+
+                                <div class="dashboard-content">
+
+
+                                    <!-- CABEÇALHO -->
+
+                                    <div class="dashboard-header">
+
+                                        <div class="dashboard-title">
+                                            SEVENE TAXA JUSTA
+                                        </div>
+
+                                        <div class="dashboard-subtitle">
+                                            Visão geral do sistema
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CARTÕES -->
+
+                                    <div class="dashboard-cards">
+
+
+                                        <div class="dashboard-stat">
+
+                                            <span>
+                                                Clientes
+                                            </span>
+
+                                            <strong>
+                                                128
+                                            </strong>
+
+                                            <small>
+                                                +12%
+                                            </small>
+
+                                        </div>
+
+
+                                        <div class="dashboard-stat">
+
+                                            <span>
+                                                Empréstimos
+                                            </span>
+
+                                            <strong>
+                                                42
+                                            </strong>
+
+                                            <small>
+                                                Activos
+                                            </small>
+
+                                        </div>
+
+
+                                        <div class="dashboard-stat">
+
+                                            <span>
+                                                Pagamentos
+                                            </span>
+
+                                            <strong>
+                                                86
+                                            </strong>
+
+                                            <small>
+                                                Este mês
+                                            </small>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <!-- GRÁFICO -->
+
+                                    <div class="dashboard-chart">
+
+                                        <div class="chart-heading">
+
+                                            <span>
+                                                Desempenho
+                                            </span>
+
+                                            <strong>
+                                                30 dias
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="chart-bars">
+
+                                            <i style="height:32%"></i>
+                                            <i style="height:48%"></i>
+                                            <i style="height:40%"></i>
+                                            <i style="height:65%"></i>
+                                            <i style="height:55%"></i>
+                                            <i style="height:78%"></i>
+                                            <i style="height:68%"></i>
+                                            <i style="height:90%"></i>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- RODAPÉ -->
+
+                                    <div class="dashboard-footer">
+
+                                        <span>
+                                            Empréstimos
+                                        </span>
+
+                                        <span>
+                                            Pagamentos
+                                        </span>
+
+                                        <span>
+                                            Clientes
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- INFORMAÇÃO -->
+
+                        <div class="project-info">
+
+                            <h3>
+                                SEVENE TAXA JUSTA
+                            </h3>
+
+                            <p>
+                                Sistema de gestão de microcrédito
+                                desenvolvido para controlar clientes,
+                                empréstimos, pagamentos, garantias,
+                                bens e operações financeiras.
+                            </p>
+
+
+                            <div class="project-tech">
+
+                                <span>
+                                    Java
+                                </span>
+
+                                <span>
+                                    Spring Boot
+                                </span>
+
+                                <span>
+                                    MySQL
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+             PROJECTO 02 — CONDUZMZ
+             ================================================= -->
+
+                    <article class="project-card project-blue reveal">
+
+                        <div class="project-top">
+
+                            <span class="project-category">
+                                Aplicação Android
+                            </span>
+
+                            <span class="project-status">
+                                Mobile
+                            </span>
+
+                        </div>
+
+
+                        <!-- MOCKUP DO TELEMÓVEL -->
+
+                        <div class="project-visual">
+
+                            <div class="phone-mockup">
+
+
+                                <!-- CÂMARA / NOTCH -->
+
+                                <div class="phone-notch"></div>
+
+
+                                <div class="phone-screen">
+
+
+                                    <!-- CABEÇALHO -->
+
+                                    <div class="phone-header">
+
+                                        <div class="conduzmz-brand">
+                                            ConduzMZ
+                                        </div>
+
+                                        <div class="conduzmz-subtitle">
+                                            Preparação para o exame
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- PROGRESSO -->
+
+                                    <div class="quiz-progress">
+
+                                        <div class="quiz-progress-top">
+
+                                            <span>
+                                                Questão 04
+                                            </span>
+
+                                            <strong>
+                                                4 / 20
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="quiz-progress-bar">
+
+                                            <span></span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- QUESTÃO -->
+
+                                    <div class="question-card">
+
+                                        <span class="question-number">
+                                            QUESTÃO 04
+                                        </span>
+
+                                        <strong>
+                                            Qual é o significado
+                                            deste sinal de trânsito?
+                                        </strong>
+
+
+                                        <!-- RESPOSTA 1 -->
+
+                                        <div class="answer">
+
+                                            <span class="answer-letter">
+                                                A
+                                            </span>
+
+                                            <span>
+                                                Paragem obrigatória
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- RESPOSTA 2 -->
+
+                                        <div class="answer answer-selected">
+
+                                            <span class="answer-letter">
+                                                B
+                                            </span>
+
+                                            <span>
+                                                Cedência de passagem
+                                            </span>
+
+                                            <span class="answer-check">
+                                                ✓
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- RESPOSTA 3 -->
+
+                                        <div class="answer">
+
+                                            <span class="answer-letter">
+                                                C
+                                            </span>
+
+                                            <span>
+                                                Proibido estacionar
+                                            </span>
+
+                                        </div>
+
+
+                                        <!-- RESPOSTA 4 -->
+
+                                        <div class="answer">
+
+                                            <span class="answer-letter">
+                                                D
+                                            </span>
+
+                                            <span>
+                                                Velocidade máxima
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- RODAPÉ -->
+
+                                    <div class="quiz-footer">
+
+                                        <span>
+                                            ✓ 3 correctas
+                                        </span>
+
+                                        <span>
+                                            1 erro
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- INFORMAÇÃO -->
+
+                        <div class="project-info">
+
+                            <h3>
+                                ConduzMZ
+                            </h3>
+
+                            <p>
+                                Aplicação Android para preparação
+                                do exame de condução, com questões,
+                                respostas, progresso e funcionamento
+                                offline.
+                            </p>
+
+
+                            <div class="project-tech">
+
+                                <span>
+                                    Kotlin
+                                </span>
+
+                                <span>
+                                    Android
+                                </span>
+
+                                <span>
+                                    SQLite
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+             PROJECTO 03 — SISTEMAESTUDANTE
+             ================================================= -->
+
+                    <article class="project-card project-purple reveal">
+
+                        <div class="project-top">
+
+                            <span class="project-category">
+                                Gestão académica
+                            </span>
+
+                            <span class="project-status">
+                                Plataforma
+                            </span>
+
+                        </div>
+
+
+                        <!-- MOCKUP DO PORTAL -->
+
+                        <div class="project-visual">
+
+                            <div class="academic-dashboard">
+
+
+                                <!-- CABEÇALHO -->
+
+                                <div class="academic-header">
+
+                                    <div class="academic-brand">
+                                        SistemaEstudante
+                                    </div>
+
+                                    <div class="academic-subtitle">
+                                        Gestão académica
+                                    </div>
+
+                                </div>
+
+
+                                <!-- MINI ESTATÍSTICAS -->
+
+                                <div class="academic-stats">
+
+
+                                    <div class="academic-stat">
+
+                                        <span>
+                                            Estudantes
+                                        </span>
+
+                                        <strong>
+                                            248
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="academic-stat">
+
+                                        <span>
+                                            Disciplinas
+                                        </span>
+
+                                        <strong>
+                                            16
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="academic-stat">
+
+                                        <span>
+                                            Aprovados
+                                        </span>
+
+                                        <strong>
+                                            86%
+                                        </strong>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <!-- TÍTULO DA PAUTA -->
+
+                                <div class="academic-section-title">
+
+                                    Pauta — Resultados
+
+                                    <span>
+                                        2026
+                                    </span>
+
+                                </div>
+
+
+                                <!-- LINHA DE TÍTULOS -->
+
+                                <div class="academic-table academic-table-head">
+
+                                    <span>
+                                        Estudante
+                                    </span>
+
+                                    <span>
+                                        Média
+                                    </span>
+
+                                    <span>
+                                        Estado
+                                    </span>
+
+                                </div>
+
+
+                                <!-- ESTUDANTE 01 -->
+
+                                <div class="academic-row">
+
+                                    <span>
+                                        Rui Luís
+                                    </span>
+
+                                    <span>
+                                        16,2
+                                    </span>
+
+                                    <span class="grade-approved">
+                                        Aprovado
+                                    </span>
+
+                                </div>
+
+
+                                <!-- ESTUDANTE 02 -->
+
+                                <div class="academic-row">
+
+                                    <span>
+                                        Ana Maria
+                                    </span>
+
+                                    <span>
+                                        14,8
+                                    </span>
+
+                                    <span class="grade-approved">
+                                        Aprovado
+                                    </span>
+
+                                </div>
+
+
+                                <!-- ESTUDANTE 03 -->
+
+                                <div class="academic-row">
+
+                                    <span>
+                                        Carlos M.
+                                    </span>
+
+                                    <span>
+                                        11,5
+                                    </span>
+
+                                    <span class="grade-exam">
+                                        Exame
+                                    </span>
+
+                                </div>
+
+
+                                <!-- ESTUDANTE 04 -->
+
+                                <div class="academic-row">
+
+                                    <span>
+                                        João Paulo
+                                    </span>
+
+                                    <span>
+                                        8,7
+                                    </span>
+
+                                    <span class="grade-recurrence">
+                                        Recorrência
+                                    </span>
+
+                                </div>
+
+
+                                <!-- RODAPÉ -->
+
+                                <div class="academic-footer">
+
+                                    <span>
+                                        Pautas
+                                    </span>
+
+                                    <span>
+                                        Notas
+                                    </span>
+
+                                    <span>
+                                        Exames
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- INFORMAÇÃO -->
+
+                        <div class="project-info">
+
+                            <h3>
+                                SistemaEstudante
+                            </h3>
+
+                            <p>
+                                Sistema de gestão académica para
+                                estudantes, disciplinas, notas, pautas,
+                                exames, recorrências e resultados.
+                            </p>
+
+
+                            <div class="project-tech">
+
+                                <span>
+                                    Java
+                                </span>
+
+                                <span>
+                                    Spring Boot
+                                </span>
+
+                                <span>
+                                    MySQL
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             SOBRE
+             ========================================================= -->
+
+        <section id="sobre" class="section about-section">
+
+            <div class="container about-grid">
+
+
+                <!-- =================================================
+                 BLOCO VISUAL
+                 ================================================= -->
+
+                <div class="about-visual reveal">
+
+                    <div class="about-card">
+
+                        <!-- LOGO -->
+
+                        <div class="about-logo">
+                            <img th:src="@{/imagens/logo-mozvexa.png}" alt="MozVexa" class="about-logo-img">
+                        </div>
+
+
+                        <!-- TEXTO PRINCIPAL -->
+
+                        <div class="about-visual-text">
+
+                            <span>
+                                SOLUÇÕES DIGITAIS
+                            </span>
+
+                            <strong>
+                                MozVexa
+                            </strong>
+
+                            <small>
+                                Desenvolvimento & Tecnologia
+                            </small>
+
+                        </div>
+
+
+                        <!-- LINHAS DE CÓDIGO -->
+
+                        <div class="about-code">
+
+                            <div>
+                                <span>01</span>
+                                <b>Java</b>
+                            </div>
+
+                            <div>
+                                <span>02</span>
+                                <b>Spring Boot</b>
+                            </div>
+
+                            <div>
+                                <span>03</span>
+                                <b>MySQL</b>
+                            </div>
+
+                            <div>
+                                <span>04</span>
+                                <b>Android</b>
+                            </div>
+
+                            <div>
+                                <span>05</span>
+                                <b>Gestão</b>
+                            </div>
+
+                        </div>
+
+
+                        <!-- ORBITAS -->
+
+                        <div class="about-orbit orbit-one"></div>
+
+                        <div class="about-orbit orbit-two"></div>
+
+
+                        <!-- PONTO CENTRAL -->
+
+                        <div class="about-center-dot"></div>
+
+                    </div>
+
+
+                    <!-- MINI CARTÃO -->
+
+                    <div class="about-floating-card">
+
+                        <span class="about-floating-icon">
+                            &lt;/&gt;
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Desenvolvimento
+                            </strong>
+
+                            <small>
+                                Sistemas personalizados
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                 CONTEÚDO
+                 ================================================= -->
+
+                <div class="about-content reveal">
+
+                    <span class="section-label">
+                        SOBRE
+                    </span>
+
+
+                    <h2 th:text="${config.sobreTitulo}">
+                        Tecnologia com propósito.
+                    </h2>
+
+
+                    <p class="about-intro" th:text="${config.sobreIntro}">
+
+                        A MozVexa é uma empresa moçambicana de desenvolvimento de soluções digitais.
+                        Unimos gestão e informática para criar sistemas de gestão, aplicações móveis e web,
+                        automação e websites. Mais do que código,
+                        entregamos tecnologia com propósito — feita para resolver problemas reais e impulsionar negócios.
+
+                    </p>
+
+
+                    <p th:text="${config.sobreTexto1}">
+
+                        O foco da MozVexa é transformar ideias e necessidades
+                        reais em sistemas, aplicações e ferramentas
+                        digitais que sejam úteis, organizadas e fáceis
+                        de utilizar.
+
+                    </p>
+
+
+                    <p th:text="${config.sobreTexto2}">
+
+                        A MozVexa trabalha com tecnologias como Java, Spring Boot, MySQL, Kotlin, Android,
+                        JavaScript, HTML, CSS, etc... unindo competências técnicas sólidas a princípios de gestão para criar soluções digitais eficientes,
+                        escaláveis e alinhadas às necessidades reais de cada negócio.
+
+                    </p>
+
+
+                    <!-- =================================================
+                     ÁREAS
+                     ================================================= -->
+
+                    <div class="about-points">
+
+
+                        <div class="about-point">
+
+                            <span class="about-point-icon">
+                                &lt;/&gt;
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Desenvolvimento
+                                </strong>
+
+                                <small>
+                                    Sistemas e aplicações personalizados
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <span class="about-point-icon">
+                                DB
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Dados
+                                </strong>
+
+                                <small>
+                                    Estruturação e gestão de bases de dados
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <span class="about-point-icon">
+                                WEB
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Web
+                                </strong>
+
+                                <small>
+                                    Websites e plataformas digitais
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <span class="about-point-icon">
+                                AND
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Mobile
+                                </strong>
+
+                                <small>
+                                    Aplicações Android
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                     TECNOLOGIAS
+                     ================================================= -->
+
+                    <div class="about-tech">
+
+                        <span>
+                            Java
+                        </span>
+
+                        <span>
+                            Spring Boot
+                        </span>
+
+                        <span>
+                            MySQL
+                        </span>
+
+                        <span>
+                            Kotlin
+                        </span>
+
+                        <span>
+                            Android
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     PROCESSO
+     ========================================================= -->
+
+        <section id="processo" class="section process-section">
+
+            <div class="container">
+
+
+                <!-- =================================================
+             CABEÇALHO
+             ================================================= -->
+
+                <div class="section-heading reveal">
+
+                    <span class="section-label">
+                        PROCESSO
+                    </span>
+
+                    <h2 th:text="${config.processoTitulo}">
+                        Da ideia à solução.
+                    </h2>
+
+                    <p th:text="${config.processoDescricao}">
+                        Um processo simples, transparente e organizado
+                        para transformar uma necessidade numa solução
+                        digital funcional.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+             ETAPAS
+             ================================================= -->
+
+                <div class="process-grid">
+
+
+                    <!-- =================================================
+                 ETAPA 01
+                 ================================================= -->
+
+                    <article class="process-item reveal">
+
+                        <div class="process-number">
+                            01
+                        </div>
+
+                        <div class="process-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <div class="process-content">
+
+                            <span class="process-label">
+                                PRIMEIRO PASSO
+                            </span>
+
+                            <h3>
+                                Pedido
+                            </h3>
+
+                            <p>
+                                O cliente apresenta a sua ideia,
+                                necessidade ou problema que pretende
+                                resolver através da tecnologia.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                 ETAPA 02
+                 ================================================= -->
+
+                    <article class="process-item reveal">
+
+                        <div class="process-number">
+                            02
+                        </div>
+
+                        <div class="process-icon">
+                            ?
+                        </div>
+
+                        <div class="process-content">
+
+                            <span class="process-label">
+                                ANÁLISE
+                            </span>
+
+                            <h3>
+                                Análise
+                            </h3>
+
+                            <p>
+                                Analisamos os requisitos, funcionalidades,
+                                necessidades técnicas e objectivos
+                                do projecto.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                 ETAPA 03
+                 ================================================= -->
+
+                    <article class="process-item reveal">
+
+                        <div class="process-number">
+                            03
+                        </div>
+
+                        <div class="process-icon">
+                            MT
+                        </div>
+
+                        <div class="process-content">
+
+                            <span class="process-label">
+                                PLANEAMENTO
+                            </span>
+
+                            <h3>
+                                Orçamento
+                            </h3>
+
+                            <p>
+                                Com base na análise, definimos o
+                                orçamento, prazo estimado e escopo
+                                da solução.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                 ETAPA 04
+                 ================================================= -->
+
+                    <article class="process-item reveal">
+
+                        <div class="process-number">
+                            04
+                        </div>
+
+                        <div class="process-icon">
+                            &lt;/
+                        </div>
+
+                        <div class="process-content">
+
+                            <span class="process-label">
+                                PRODUÇÃO
+                            </span>
+
+                            <h3>
+                                Desenvolvimento
+                            </h3>
+
+                            <p>
+                                Após a aprovação, começamos o desenvolvimento
+                                da solução, com acompanhamento da evolução
+                                do projecto.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================================
+                 ETAPA 05
+                 ================================================= -->
+
+                    <article class="process-item reveal">
+
+                        <div class="process-number">
+                            05
+                        </div>
+
+                        <div class="process-icon">
+                            ✓
+                        </div>
+
+                        <div class="process-content">
+
+                            <span class="process-label">
+                                FINALIZAÇÃO
+                            </span>
+
+                            <h3>
+                                Entrega
+                            </h3>
+
+                            <p>
+                                A solução é testada, finalizada e entregue,
+                                pronta para ser utilizada pelo cliente.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+             LINHA FINAL
+             ================================================= -->
+
+                <div class="process-bottom reveal">
+
+                    <div class="process-bottom-line"></div>
+
+                    <p th:text="${config.processoFrase}">
+                        Cada projecto é pensado de acordo com
+                        as necessidades específicas do cliente.
+                    </p>
+
+                    <a th:href="@{/solicitar}" class="btn btn-primary">
+                        Iniciar um projecto
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     CTA
+     ========================================================= -->
+
+        <section id="orcamento" class="cta-section">
+
+            <div class="cta-light"></div>
+
+            <div class="container">
+
+                <div class="cta-box reveal">
+
+                    <div>
+
+                        <span class="section-label">
+                            TEM UM PROJECTO?
+                        </span>
+
+                        <h2 th:text="${config.ctaTitulo}">
+                            Vamos transformar a sua ideia em realidade.
+                        </h2>
+
+                        <p th:text="${config.ctaDescricao}">
+                            Conte-nos o que pretende desenvolver
+                            e vamos encontrar uma solução.
+                        </p>
+
+                    </div>
+
+                    <a th:href="@{/solicitar}" class="btn btn-primary">
+                        Solicitar orçamento
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+     CONTACTOS
+     ========================================================= -->
+
+        <section id="contactos" class="section contact-section">
+
+            <div class="container">
+
+
+                <!-- =================================================
+             CABEÇALHO
+             ================================================= -->
+
+                <div class="section-heading reveal">
+
+                    <span class="section-label">
+                        CONTACTOS
+                    </span>
+
+                    <h2 th:text="${config.contactosTitulo}">
+                        Vamos criar algo juntos.
+                    </h2>
+
+                    <p th:text="${config.contactosDescricao}">
+                        Tem uma ideia, um projecto ou uma necessidade
+                        que pode ser resolvida através da tecnologia?
+                        Fale conosco.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+             GRELHA DE CONTACTOS
+             ================================================= -->
+
+                <div class="contact-grid">
+
+
+                    <!-- =================================================
+                 INFORMAÇÕES
+                 ================================================= -->
+
+                    <div class="contact-info reveal">
+
+
+                        <!-- TELEFONE -->
+
+                        <a th:href="'tel:+258' + ${#strings.replace(config.telefoneEmpresa, ' ', '')}"
+                           class="contact-card">
+
+                            <div class="contact-icon">
+                                TEL
+                            </div>
+
+                            <div class="contact-card-content">
+
+                                <span>
+                                    TELEFONE
+                                </span>
+
+                                <strong th:text="${config.telefoneEmpresa}">
+                                    84 902 3562
+                                </strong>
+
+                                <small>
+                                    Ligar directamente
+                                </small>
+
+                            </div>
+
+                            <span class="contact-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- WHATSAPP -->
+
+                        <a th:href="'https://wa.me/258' + ${#strings.replace(config.whatsappEmpresa, ' ', '')}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="contact-card contact-whatsapp">
+
+                            <div class="contact-icon">
+                                WA
+                            </div>
+
+                            <div class="contact-card-content">
+
+                                <span>
+                                    WHATSAPP
+                                </span>
+
+                                <strong th:text="${config.whatsappEmpresa}">
+                                    87 982 3562
+                                </strong>
+
+                                <small>
+                                    Enviar mensagem
+                                </small>
+
+                            </div>
+
+                            <span class="contact-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- E-MAIL -->
+
+                        <a th:href="'mailto:' + ${config.emailEmpresa}"
+                           class="contact-card">
+
+                            <div class="contact-icon">
+                                @
+                            </div>
+
+                            <div class="contact-card-content">
+
+                                <span>
+                                    E-MAIL
+                                </span>
+
+                                <strong th:text="${config.emailEmpresa}">
+                                    MozVexa@solucoes.co.mz
+                                </strong>
+
+                                <small>
+                                    Enviar mensagem por e-mail
+                                </small>
+
+                            </div>
+
+                            <span class="contact-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- LOCALIZAÇÃO -->
+
+                        <div class="contact-card contact-location">
+
+                            <div class="contact-icon">
+                                MAP
+                            </div>
+
+                            <div class="contact-card-content">
+
+                                <span>
+                                    LOCALIZAÇÃO
+                                </span>
+
+                                <strong th:text="${config.enderecoEmpresa}">
+                                    Maputo, Moçambique
+                                </strong>
+
+                                <small>
+                                    Atendimento remoto e presencial
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                 FORMULÁRIO
+                 ================================================= -->
+
+                    <div class="contact-form-wrapper reveal">
+
+                        <div class="contact-form-header">
+
+                            <span>
+                                PEDIR ORÇAMENTO
+                            </span>
+
+                            <h3>
+                                Conte-nos sobre o seu projecto.
+                            </h3>
+
+                            <p>
+                                Preencha o formulário e entraremos em
+                                contacto consigo para analisarmos
+                                a melhor solução.
+                            </p>
+
+                        </div>
+
+
+                        <form id="contactForm" class="contact-form">
+
+
+                            <!-- NOME -->
+
+                            <div class="form-group">
+
+                                <label for="nome">
+                                    Nome
+                                </label>
+
+                                <input type="text"
+                                    id="nome"
+                                    name="nome"
+                                    placeholder="O seu nome"
+                                    required>
+
+                            </div>
+
+
+
+                            <!-- E-MAIL -->
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    E-mail
+                                </label>
+
+                                <input type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="O seu e-mail"
+                                    required>
+
+                            </div>
+
+
+
+                            <!-- TELEFONE -->
+
+                            <div class="form-group">
+
+                                <label for="telefone">
+                                    Telefone
+                                </label>
+
+                                <input type="tel"
+                                    id="telefone"
+                                    name="telefone"
+                                    placeholder="84 / 87 XXX XXXX">
+
+                            </div>
+
+
+
+                            <!-- SERVIÇO -->
+
+                            <div class="form-group">
+
+                                <label for="servico">
+                                    Serviço
+                                </label>
+
+                                <select id="servico" name="servico" required>
+
+                                    <option value="">
+                                        Seleccionar serviço
+                                    </option>
+
+                                    <option value="Desenvolvimento de Sistemas">
+                                        Desenvolvimento de Sistemas
+                                    </option>
+
+                                    <option value="Desenvolvimento Web">
+                                        Desenvolvimento Web
+                                    </option>
+
+                                    <option value="Aplicação Android">
+                                        Aplicação Android
+                                    </option>
+
+                                    <option value="Base de Dados">
+                                        Base de Dados
+                                    </option>
+
+                                    <option value="Sistema de Gestão">
+                                        Sistema de Gestão
+                                    </option>
+
+                                    <option value="Automação">
+                                        Automação
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- MENSAGEM -->
+
+                            <div class="form-group form-group-full">
+
+                                <label for="mensagem">
+                                    Mensagem
+                                </label>
+
+                                <textarea id="mensagem"
+                                    name="mensagem"
+                                    rows="5"
+                                    placeholder="Descreva brevemente o que precisa..."
+                                    required></textarea>
+
+                            </div>
+
+
+
+                            <!-- MENSAGEM DO SISTEMA -->
+
+                            <div id="formMessage"
+                                class="form-message"
+                                role="alert"
+                                aria-live="polite"></div>
+
+
+
+                            <!-- BOTÃO -->
+
+                            <button type="submit"
+                                class="btn btn-primary form-submit">
+
+                                Enviar pedido
+
+                                <span>
+                                    →
+                                </span>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+             HORÁRIO
+             ================================================= -->
+
+                <div class="contact-bottom reveal">
+
+                    <div class="contact-bottom-item">
+
+                        <span class="contact-bottom-icon">
+                            07
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Horário de atendimento
+                            </strong>
+
+                            <small th:text="${config.contactoHorario}">
+                                Segunda-feira a Sexta-feira das 07:00 às 18:00 e Sábado das 07:00 às 15:30
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="contact-bottom-item">
+
+                        <span class="contact-bottom-icon">
+                            24
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Resposta personalizada
+                            </strong>
+
+                            <small th:text="${config.contactoResposta}">
+                                Cada pedido é analisado individualmente
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="contact-bottom-item">
+
+                        <span class="contact-bottom-icon">
+                            WEB
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Atendimento digital
+                            </strong>
+
+                            <small th:text="${config.contactoAtendimento}">
+                                Contacto simples através da Internet
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div class="footer-brand">
+
+                <div class="brand-logo">
+                    <img th:src="@{/imagens/logo-mozvexa.png}" alt="MozVexa" class="brand-logo-img">
+                </div>
+
+                <div>
+                    <strong th:text="${config.nomeEmpresa}">MozVexa</strong>
+                    <span>Soluções Digitais</span>
+                </div>
+
+            </div>
+
+
+            <p th:text="${config.footerFrase}">
+                Transformamos ideias em soluções digitais.
+            </p>
+
+
+            <div class="footer-copy">
+
+                © <span id="currentYear"></span>
+                <span th:text="${config.footerCopyright}">MozVexa — Soluções Digitais</span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+    <script th:src="@{/js/script.js}"></script>
+
+</body>
+
+</html>
